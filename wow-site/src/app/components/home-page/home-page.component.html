@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 hidden-xs"
+         uk-scrollspy="cls: uk-animation-slide-top-medium; delay: 100; repeat: false">
+      <div class="uk-panel background">
+        <div class="uk-padding-large">
+          <h1 class="uk-article-title gray uk-margin-remove">
+            Это школа,
+          </h1>
+          <p class="uk-text-lead gray uk-margin-remove">
+            в которой учат сервису!
+          <hr class="uk-divider-small">
+          <ul
+            class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+            <li><a href="#target" uk-scroll="offset: -510">подробнее</a></li>
+            <li><a routerLink="/about">о нас</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 visible-xs">
+      <div class="uk-panel uk-text-center">
+        <div class="uk-padding-large">
+          <h1 class="uk-article-title gray uk-margin-remove">
+            Это школа,
+          </h1>
+          <p class="uk-text-lead gray uk-margin-remove">
+            в которой учат сервису!
+          <hr class="uk-divider-small">
+          <ul
+            class="uk-comment-meta uk-flex-center uk-subnav uk-subnav-divider uk-margin-remove-top">
+            <li><a href="#target" uk-scroll="offset: -510">подробнее</a></li>
+            <li><a routerLink="/about">о нас</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-margin-medium-top hidden-xs"></div>
+  <div class="uk-margin-small-top visible-xs"></div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6" *ngIf="events?.length > 0">
+      <div>
+        <h3 class="uk-heading-line hidden-xs">
+          <span>Мероприятия</span>
+        </h3>
+        <h3 class="uk-heading-line uk-margin-small-top uk-text-center visible-xs">
+          <span>Мероприятия</span>
+        </h3>
+        <a id="target" hidden></a>
+        <div class="uk-card uk-card-default uk-margin-medium-bottom"
+             uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 100; repeat: true"
+             *ngFor="let eventItem of events">
+          <div class="uk-card-media-top text-center">
+            <img [src]="eventItem?.imagePath">
+          </div>
+          <div class="uk-card-header uk-padding-small">
+            <div class="col-xs-12">
+              <h3 class="uk-margin-remove">
+                <span>{{eventItem?.title}}</span>
+              </h3>
+            </div>
+          </div>
+          <div class="uk-card-body uk-padding-small clearfix">
+            <div class="col-sm-6 col-xs-12">
+              <dl class="uk-description-list uk-margin-remove-bottom">
+                <dt>Тип мероприятия</dt>
+                <dd>{{eventItem?.type}} <br></dd>
+                <dt>Стоимость</dt>
+                <dd>{{eventItem?.cost}}</dd>
+              </dl>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <dl class="uk-description-list uk-margin-remove-bottom">
+                <dt>Дата и время начала</dt>
+                <dd>{{eventItem?.date | date:'fullDate'}} в {{eventItem?.date
+                  | date:"HH:mm"}}
+                </dd>
+                <dt>Место проведения</dt>
+                <dd>{{eventItem?.place}}</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="uk-margin-small visible-xs"></div>
+          <div class="uk-card-footer text-center">
+            <a class="uk-button uk-button-text"
+               (click)="openDetails(eventItem)">
+              подробнее
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6" *ngIf="news?.length > 0">
+      <div>
+        <h3 class="uk-heading-line hidden-xs">
+          <span>Новости</span>
+        </h3>
+        <h3 class="uk-heading-line uk-margin-small-top uk-text-center visible-xs">
+          <span>Новости</span>
+        </h3>
+        <div class="uk-card uk-card-default uk-margin-medium-bottom"
+             uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 100; repeat: true"
+             *ngFor="let newsItem of news">
+          <div class="uk-card-media-top text-center uk-cover-container">
+            <img class="image-wrapper" [src]="newsItem?.imagePath">
+          </div>
+          <div class="uk-card-header uk-padding-small">
+            <div class="col-xs-12">
+              <h3 class="uk-margin-remove"><span>{{newsItem?.title}}</span></h3>
+            </div>
+          </div>
+          <div class="uk-card-body uk-padding-small">
+            <div class="col-xs-12">
+              <div class="article"
+                   [innerHTML]="first250Chars(newsItem?.description)"></div>
+            </div>
+          </div>
+          <div class="uk-card-footer text-center">
+            <a (click)="openNewsDetails(newsItem)"
+               class="uk-button uk-button-text">
+              читать дальше
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-event-modal [event]="currentEvent"></app-event-modal>
+<app-news-modal [news]="currentNews"></app-news-modal>

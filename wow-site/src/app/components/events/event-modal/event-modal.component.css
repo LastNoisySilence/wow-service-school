@@ -1,0 +1,6 @@
+@media (max-width: 480px) {
+  .uk-card-header,
+  .uk-card-body {
+    padding: 15px 0;
+  }
+}

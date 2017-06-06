@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row" *ngIf="newsList?.length > 0">
+    <div class="col-xs-12 col-md-6">
+      <div *ngFor="let newsItem of newsList; let even = even"
+           uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 100; repeat: true">
+        <app-news-item
+          *ngIf="even"
+          [newsItem]="newsItem"
+          [(newsInModal)]="currentNews"
+          (onCurrentNewsChange)="changeNewsInModal($event)">
+        </app-news-item>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div *ngFor="let newsItem of newsList; let odd = odd"
+           uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 100; repeat: true">
+        <app-news-item
+          *ngIf="odd"
+          [newsItem]="newsItem"
+          [(newsInModal)]="currentNews"
+          (onCurrentNewsChange)="changeNewsInModal($event)">
+        </app-news-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-news-modal [news]="newsInModal"></app-news-modal>

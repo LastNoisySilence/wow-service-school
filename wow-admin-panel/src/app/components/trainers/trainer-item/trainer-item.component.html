@@ -1,0 +1,38 @@
+<div>
+  <div class="uk-card uk-card-default uk-animation-scale-up">
+    <div class="uk-card-media-top">
+      <img class="uk-height-medium center-cover"
+           *ngIf="trainer?.photoUrl.length > 0"
+           [src]="trainer?.photoUrl"
+           alt="Image">
+    </div>
+    <div class="uk-card-body uk-padding-small">
+      <h3 class="uk-heading-divider uk-text-left">
+        <span>
+          {{trainer?.fullName}}
+        </span>
+      </h3>
+      <dl class="uk-description-list text-left uk-description-list-divider">
+        <dt *ngIf="trainer?.phoneNumber">Номер телефона тренера</dt>
+        <dd>{{trainer?.phoneNumber}}</dd>
+        <dt *ngIf="trainer?.email">E-mail тренера</dt>
+        <dd>{{trainer?.email}}</dd>
+        <dt *ngIf="trainer?.siteUrl">Сайт тренера</dt>
+        <dd>{{trainer?.siteUrl}}</dd>
+      </dl>
+      <hr>
+      <div class="uk-grid-divider uk-flex-center" uk-grid>
+        <div>
+          <a class="uk-button uk-button-text" (click)="editTrainer()">
+            Редактировать
+          </a>
+        </div>
+        <div>
+          <a class="uk-button uk-button-text" (click)="deleteTrainer()">
+            Удалить
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

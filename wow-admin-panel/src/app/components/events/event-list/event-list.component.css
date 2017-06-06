@@ -1,0 +1,7 @@
+.uk-accordion-title::after {
+  background-position: 50% 30%;
+}
+
+app-event-item {
+  display: block;
+}

@@ -1,0 +1,27 @@
+<div>
+  <div class="uk-card uk-card-default uk-animation-scale-up">
+    <div class="uk-card-media-top">
+      <img class="uk-height-medium center-cover"
+           *ngIf="news?.imagePath.length > 0"
+           src="{{news?.imagePath}}"
+           alt="Image">
+    </div>
+    <div class="uk-card-body uk-padding-small">
+      <h3 class="uk-text-left"><span>{{news?.title}}</span>
+      </h3>
+      <hr>
+      <div class="uk-grid-divider uk-flex-center" uk-grid>
+        <div>
+          <a class="uk-button uk-button-text" (click)="editNews()">
+            Редактировать
+          </a>
+        </div>
+        <div>
+          <a class="uk-button uk-button-text" (click)="deleteNews()">
+            Удалить
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

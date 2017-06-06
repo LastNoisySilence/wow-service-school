@@ -1,0 +1,38 @@
+a[href="https://www.froala.com/wysiwyg-editor?k=u"] { display:none !important; }
+
+body, html {
+  background-color: white !important;
+  height:auto;
+  min-height: 100vh;
+}
+
+em {
+  color: black !important;
+}
+
+.fr-box.fr-basic.fr-top .fr-wrapper {
+  box-shadow: none !important;
+}
+
+.center-cropped {
+  object-fit: contain;
+  object-position: center;
+  width: 600px;
+}
+
+.center-cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+.datepicker {
+  z-index: 1151 !important;
+}
+
+.uk-card-default {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, .1) !important;
+}
+
+.fr-quick-insert {
+  display: none !important;
+}

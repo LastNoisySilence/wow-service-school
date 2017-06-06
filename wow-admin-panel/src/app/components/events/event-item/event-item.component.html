@@ -1,0 +1,40 @@
+<div>
+  <div class="uk-card uk-card-default">
+    <div class="uk-card-media-top">
+      <img class="uk-height-medium center-cover"
+           *ngIf="event?.imagePath.length > 0"
+           [src]="event?.imagePath"
+           alt="Image">
+    </div>
+    <div class="uk-card-body uk-padding-small">
+      <h3 class="uk-heading-divider uk-text-left">
+        <span>
+          {{event?.title}}
+        </span>
+      </h3>
+      <dl class="uk-description-list text-left uk-description-list-divider">
+        <dt>Тип мероприятия</dt>
+        <dd>{{event?.type}}</dd>
+        <dt>Дата и время начала</dt>
+        <dd>{{event?.date | date:'fullDate'}}</dd>
+        <dt>Стоимость</dt>
+        <dd>{{event?.cost}}</dd>
+        <dt>Место проведения</dt>
+        <dd>{{event?.place}}</dd>
+      </dl>
+      <hr>
+      <div class="uk-grid-divider uk-flex-center" uk-grid>
+        <div>
+          <a class="uk-button uk-button-text" (click)="editEvent()">
+            Редактировать
+          </a>
+        </div>
+        <div>
+          <a class="uk-button uk-button-text" (click)="deleteEvent()">
+            Удалить
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="uk-card uk-card-default uk-margin-medium-bottom">
+  <div class="uk-card-media-top text-center uk-cover-container">
+    <img class="image-wrapper" [src]="newsItem?.imagePath">
+  </div>
+  <div class="uk-card-header uk-padding-small">
+    <div class="col-xs-12">
+      <h3 class="uk-margin-remove"><span>{{newsItem?.title}}</span></h3>
+    </div>
+  </div>
+  <div class="uk-card-body uk-padding-small">
+    <div class="col-xs-12">
+      <div class="article"
+           [innerHTML]="shortDescription(newsItem?.description)"></div>
+    </div>
+  </div>
+  <div class="uk-card-footer text-center">
+    <a (click)="openNewsDetails(newsItem)"
+       class="uk-button uk-button-text">
+      читать дальше
+    </a>
+  </div>
+</div>

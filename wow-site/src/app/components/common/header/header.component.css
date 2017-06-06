@@ -1,0 +1,27 @@
+@media (max-width: 639px) {
+  .logo {
+    text-align: center;
+  }
+}
+
+.uk-active > a {
+  border-color: red;
+}
+
+.uk-tab > * > a {
+  padding-top: 15px;
+}
+
+.logo {
+  font-family: CHILLER;
+  color: rgba(216, 6, 6, 0.98)
+}
+
+.gray {
+  color: #666666;
+}
+
+[routerLink] {
+  cursor: pointer;
+  outline: none;
+}

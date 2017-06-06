@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'CHILLER';
+	src: url('./CHILLER.eot');
+	src: local('CHILLER'), url('./CHILLER.woff') format('woff'), url('./CHILLER.ttf') format('truetype');
+}
+.fontsforweb_fontid_1382 {
+	font-family: 'CHILLER', sans-serif !important;
+}

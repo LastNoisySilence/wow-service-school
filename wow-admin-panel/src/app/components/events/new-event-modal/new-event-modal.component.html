@@ -1,0 +1,155 @@
+<div id="AddModal" uk-modal="bg-close: false">
+  <div
+    class="uk-modal-dialog uk-modal-body uk-width-1-1@s uk-width-4-5@m uk-width 5-6@l">
+    <form class="uk-grid-small" uk-grid>
+      <div
+        class="image-upload form-group uk-width-1-1@s text-center uk-width-1-3@m"
+        uk-form-custom>
+        <img class="center-cropped uk-border-rounded" src="{{defaultImageSrc}}"
+             alt="Image placeholder">
+        <input type="file" multiple accept="image/x-png,image/gif,image/jpeg"
+               (change)="uploadImage($event)">
+        <progress id="progressbar" class="uk-progress" value="0" max="100"
+                  hidden>
+        </progress>
+        <button
+          class="uk-width-1-1 uk-margin-medium-top uk-button uk-button-default"
+          type="button"
+          tabindex="-1">
+          Добавить изображение
+        </button>
+      </div>
+      <div class="uk-width-1-1@s uk-width-2-3@m form-group">
+        <div class="uk-grid-small" uk-grid>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <button
+              class="uk-button-default uk-button uk-width-1-1"
+              (click)="openNewCategoryModal()"
+              *ngIf="categories?.length <= 0">
+              Создать категорию
+            </button>
+            <div uk-grid>
+              <div class="uk-width-expand" *ngIf="categories?.length > 0">
+                <select [(ngModel)]="event.categoryId"
+                        [ngModelOptions]="{standalone: true}"
+                        class="uk-select uk-width-3-1">
+                  <option value="" disabled selected
+                          *ngIf="event.categoryId === ''">
+                    Категория мероприятия
+                  </option>
+                  <option *ngFor="let category of categories"
+                          [ngValue]="category?._id">
+                    {{category?.title}}
+                  </option>
+                </select>
+              </div>
+              <span
+                uk-icon="icon: plus"
+                (click)="openNewCategoryModal()"
+                *ngIf="categories?.length > 0">
+              </span>
+            </div>
+          </div>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <input class="uk-input" type="text"
+                   placeholder="Название мероприятия..."
+                   [(ngModel)]="event.title"
+                   name="Title">
+          </div>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <input class="uk-input"
+                   type="text" placeholder="Продолжительность..."
+                   [(ngModel)]="event.duration"
+                   name="Duration">
+          </div>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <input placeholder="Дата и время начала" type='text'
+                   data-position="bottom right"
+                   class='uk-input datepicker-here'/>
+          </div>
+        </div>
+        <div class="uk-grid-small" uk-grid>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <input class="uk-input"
+                   type="text" placeholder="Стоимость..."
+                   [(ngModel)]="event.cost"
+                   name="Cost">
+          </div>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <select [(ngModel)]="event.type"
+                    [ngModelOptions]="{standalone: true}"
+                    class="uk-select uk-width-1-1">
+              <option *ngFor="let type of eventTypes" [ngValue]="type">
+                {{type}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="uk-grid-small uk-margin-medium-bottom" uk-grid>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <input
+              class="uk-input uk-width-1-1"
+              type="text" placeholder="Место проведения..."
+              [(ngModel)]="event.place"
+              name="Place">
+          </div>
+          <div class="uk-width-1-1@s uk-width-1-2@m">
+            <select [(ngModel)]="event.trainerId"
+                    [ngModelOptions]="{standalone: true}"
+                    class="uk-select uk-width-1-1">
+              <option value="" disabled selected
+                      *ngIf="event.trainerId === ''">
+                Тренер
+              </option>
+              <option *ngFor="let trainer of trainers" [ngValue]="trainer?._id">
+                {{trainer?.fullName}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="uk-width-1-1">
+          <ul class="uk-subnav uk-subnav-divider uk-flex-center">
+            <li *ngFor="let editForm of editForms"
+                [ngClass]="{'uk-active': selectedForm === editForm}">
+              <a (click)="switchEditor(editForm)">
+                {{editForm?.short}}
+              </a>
+            </li>
+          </ul>
+          <textarea [froalaEditor]="options"
+                    [(ngModel)]="event[currentEditKey]"
+                    [ngModelOptions]="{standalone: true}"
+                    class="uk-textarea uk-margin-small-top uk-height-1-1">
+          </textarea>
+        </div>
+      </div>
+      <div class="uk-width-1-1">
+        <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+                (click)="add()" *ngIf="!isEditMode">
+          Добавить
+        </button>
+        <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+                (click)="update()" *ngIf="isEditMode">
+          Редактировать
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="newEventsCategoryModal" uk-modal="bg-close: false">
+  <div
+    class="uk-modal-dialog uk-modal-body uk-width-1-1@s uk-width-4-5@m uk-width 5-6@l">
+    <div class="uk-width-1-1 uk-margin-small-bottom">
+      <input class="uk-input" type="text"
+             placeholder="Название категории..."
+             [(ngModel)]="newCategory.title"
+             name="Category title" required>
+    </div>
+    <div class="uk-width-1-1">
+      <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+              (click)="addNewCategory()">
+        Добавить
+      </button>
+    </div>
+  </div>
+</div>

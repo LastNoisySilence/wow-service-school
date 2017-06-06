@@ -1,0 +1,23 @@
+<div id="newsDetailModal" uk-modal="center: true">
+  <div class="uk-modal-dialog uk-modal-body uk-padding-remove uk-width-1-1 uk-width-1-2@l">
+    <button class="uk-modal-close-full visible-xs" type="button" uk-close></button>
+    <button class="uk-modal-close-outside hidden-xs" type="button" uk-close></button>
+    <div class="uk-card uk-card-default">
+      <div class="uk-card-media-top text-center">
+        <img [src]="news?.imagePath || ''">
+      </div>
+      <div class="uk-card-header">
+        <div class="col-xs-12">
+          <h3 class="uk-margin-remove">
+            <span>{{news?.title}}</span>
+          </h3>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-medium clearfix">
+        <div class="col-xs-12">
+          <div class="article" [innerHTML]="news?.description | safeHtml"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

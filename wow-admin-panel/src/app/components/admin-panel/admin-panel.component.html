@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row uk-margin-medium-top">
+    <div class="col-xs-12">
+      <ul class="uk-subnav uk-flex-center uk-subnav-divider" uk-margin>
+        <li *ngFor="let tab of tabs"
+            [ngClass]="{'uk-active': selectedTab === tab}">
+          <a routerLink="{{tab.path}}" (click)="selectedTab = tab">
+            {{tab.title}}
+          </a>
+        </li>
+      </ul>
+      <button
+        class="uk-button uk-button-default uk-margin-small-top uk-width-1-1"
+        (click)="openModalWindow()">
+        Добавить {{
+        selectedTab.title === 'Новости' ?
+        'новость' : selectedTab.title === 'Мероприятия' ?
+        'мероприятие' : 'тренера'
+        }}
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>
