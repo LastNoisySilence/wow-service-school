@@ -1,0 +1,9 @@
+{
+  "name": "wow-service-school",
+  "version": "0.5.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd wow-admin-panel && npm i && ng build --prod --aot --base-href=/edit/ && cd ../wow-site && npm i && ng build --prod --aot && cd ../wow-server && npm i && pm2 delete all && pm2 start bin/www",
+    "build-dev": "cd wow-admin-panel && npm i && ng build --prod --aot --base-href=/edit/ && cd ../wow-site && npm i && ng build --prod --aot && cd ../wow-server && npm i && npm start"
+  }
+}
