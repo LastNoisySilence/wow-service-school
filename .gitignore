@@ -6,6 +6,7 @@
 
 # dependencies
 /node_modules
+/wow-admin-panel/.idea/
 /wow-admin-panel/dist
 /wow-admin-panel/node_modules
 /wow-admin-panel/.gitignore
@@ -16,6 +17,8 @@
 /wow-site/.gitignore
 /wow-site/.editorconfig
 /wow-server/node_modules
+/wow-server/.idea/
+/wow-site/.idea/
 # IDEs and editors
 /.idea
 .project

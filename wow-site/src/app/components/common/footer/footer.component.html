@@ -18,9 +18,14 @@
         class="col-xs-12 col-md-6 uk-margin-small-top uk-margin-small-bottom">
         <div
           class="uk-align-right@m uk-align-center uk-text-center uk-margin-remove">
-          <input class="uk-input uk-form-width-medium" type="text"
-                 placeholder="Введите Ваш e-mail...">
-          <button class="uk-button uk-button-default subscribe-button">
+          <input
+            class="uk-input uk-form-width-medium"
+            type="text"
+            [(ngModel)]="footerEmail"
+            placeholder="Введите Ваш e-mail...">
+          <button
+            [routerLink]="['/contact-page', footerEmail]"
+            class="uk-button uk-button-default subscribe-button">
             Подписаться
           </button>
         </div>

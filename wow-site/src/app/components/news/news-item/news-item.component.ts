@@ -13,9 +13,6 @@ export class NewsItemComponent {
   @Input() currentNews: News;
   @Output() onCurrentNewsChange: EventEmitter<News> = new EventEmitter();
 
-  constructor() {
-  }
-
   shortDescription(text: string) {
     return text.length > 250 ? text.substring(0, 250) + '...' : text;
   }

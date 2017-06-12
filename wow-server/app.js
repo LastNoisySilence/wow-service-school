@@ -9,7 +9,8 @@ let trainers = require('./routes/trainers'),
     news = require('./routes/news'),
     events = require('./routes/events'),
     eventsCategory = require('./routes/eventsCategory'),
-    upload = require('./routes/upload');
+    upload = require('./routes/upload'),
+    subscription = require('./routes/subscription');
 
 let app = express();
 
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/service-school');
+mongoose.connect('mongodb://localhost:27017/wow-service-school-v2');
 app.use('/', express.static(path.join(__dirname + '/../wow-site/dist')));
 app.use('/edit', express.static(path.join(__dirname + '/../wow-admin-panel/dist')));
 app.use('/images', express.static(path.join(__dirname + '/static/images')));
@@ -29,6 +30,7 @@ app.use('/', news);
 app.use('/', events);
 app.use('/', eventsCategory);
 app.use('/', upload);
+app.use('/', subscription);
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;

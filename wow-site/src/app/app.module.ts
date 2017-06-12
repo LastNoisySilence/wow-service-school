@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {AppComponent} from './app.component';
@@ -21,6 +21,10 @@ import {NewsItemComponent} from './components/news/news-item/news-item.component
 import {EventsListComponent} from './components/events/events-list/events-list.component';
 import {EventItemComponent} from './components/events/event-item/event-item.component';
 import { AboutComponent } from './components/about/about.component';
+import { TrainersListComponent } from './components/trainers/trainers-list/trainers-list.component';
+import { TrainerItemComponent } from './components/trainers/trainer-item/trainer-item.component';
+import { TrainerModalComponent } from './components/trainers/trainer-modal/trainer-modal.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -35,14 +39,19 @@ import { AboutComponent } from './components/about/about.component';
     NewsItemComponent,
     EventsListComponent,
     EventItemComponent,
-    AboutComponent
+    AboutComponent,
+    TrainersListComponent,
+    TrainerItemComponent,
+    TrainerModalComponent,
+    ContactsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routes
+    routes,
+    ReactiveFormsModule
   ],
   providers: [
     DataService,

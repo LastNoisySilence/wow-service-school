@@ -1,13 +1,11 @@
-import {Component, Pipe, PipeTransform} from '@angular/core';
+import {Component} from '@angular/core';
 import {DataService} from "../../../services/data.service";
 import {News} from "../../../entities/news";
-import {NewsItemComponent} from "../news-item/news-item.component";
 
 @Component({
   selector: 'app-news-list',
   templateUrl: './news-list.component.html',
-  styleUrls: ['./news-list.component.css'],
-  entryComponents: [NewsItemComponent]
+  styleUrls: ['./news-list.component.css']
 })
 export class NewsListComponent {
 

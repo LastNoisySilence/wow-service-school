@@ -7,6 +7,8 @@ import {NewsListComponent} from
 import {EventsListComponent} from
   "./components/events/events-list/events-list.component";
 import {AboutComponent} from "./components/about/about.component";
+import {TrainersListComponent} from "./components/trainers/trainers-list/trainers-list.component";
+import {ContactsComponent} from "./components/contacts/contacts.component";
 
 
 export const router: Routes = [
@@ -14,7 +16,10 @@ export const router: Routes = [
   {path: 'home-page', component: HomePageComponent},
   {path: 'news-page', component: NewsListComponent},
   {path: 'events-page', component: EventsListComponent},
-  {path: 'about-page', component: AboutComponent}
+  {path: 'trainers-page', component: TrainersListComponent},
+  {path: 'about-page', component: AboutComponent},
+  {path: 'contact-page', component: ContactsComponent},
+  {path: 'contact-page/:email', component: ContactsComponent}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

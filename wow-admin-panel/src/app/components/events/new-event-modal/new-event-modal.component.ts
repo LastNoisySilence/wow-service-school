@@ -174,6 +174,7 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
   update() {
     this._data.editEvent(this.event).subscribe(
       () => {
+        this._event.editEvent(this.event);
         UIkit.modal('#AddModal').hide();
         this.clearData();
       }, error => console.error(error)

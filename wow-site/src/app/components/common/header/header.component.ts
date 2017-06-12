@@ -21,16 +21,16 @@ export class HeaderComponent {
       path: '/events-page'
     },
     {
+      title: 'Тренеры',
+      path: '/trainers-page'
+    },
+    {
       title: 'Консалтинг',
       path: '/home-page'
     },
     {
-      title: 'Тренеры',
-      path: '/home-page'
-    },
-    {
       title: 'Контакты',
-      path: '/home-page'
+      path: '/contact-page'
     },
     {
       title: 'О нас',
@@ -42,7 +42,7 @@ export class HeaderComponent {
   constructor(private _router:Router) {
     _router.events.subscribe((e: any) => {
       this.selectedLinkIndex = this.links.indexOf(this.links.filter(link => {
-        return link.path === e.url;
+        return e.url.indexOf(link.path) > -1;
       })[0]);
       this.selectedLinkIndex = this.selectedLinkIndex < 0
         ? 0

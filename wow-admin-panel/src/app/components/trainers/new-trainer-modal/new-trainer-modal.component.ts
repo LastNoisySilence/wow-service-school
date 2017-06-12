@@ -63,15 +63,16 @@ export class NewTrainerModalComponent implements OnDestroy, OnInit {
     UIkit.upload('.image-upload', {
       url: '/upload',
       multiple: true,
+      params: {
+        type: 'photo'
+      },
       error: function () {
         console.error('error', arguments);
       },
       complete: (resp) => {
         this.trainer.photoUrl =
           this.defaultImageSrc = '/images/' + resp.responseJSON[0].filename;
-        setTimeout(function () {
-          bar.setAttribute('hidden', 'hidden');
-        }, 1000);
+        bar.setAttribute('hidden', 'hidden');
       },
       loadStart: function (e) {
         bar.removeAttribute('hidden');

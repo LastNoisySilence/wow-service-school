@@ -3,7 +3,7 @@
 
 body, html {
   background-color: white !important;
-  height:auto;
+  height: auto;
   min-height: 100vh;
   font-size: 15px !important;
 }
@@ -11,7 +11,10 @@ body, html {
 * {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
-  color: #666666;
+}
+
+p, h1, h2, h3, h4, a, div, em {
+  color: #666666 !important;
 }
 
 .uk-card-default {
@@ -27,15 +30,15 @@ html, body {
 }
 
 #main {
-  overflow:auto;
-  padding-bottom:80px; /* this needs to be bigger than footer height*/
+  overflow: auto;
+  padding-bottom: 80px; /* this needs to be bigger than footer height*/
 }
 
 footer {
   position: relative;
   margin-top: -80px; /* negative value of footer height */
   height: 80px;
-  clear:both;
+  clear: both;
 }
 
 #toTop {

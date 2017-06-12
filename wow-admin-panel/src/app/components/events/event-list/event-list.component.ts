@@ -38,6 +38,11 @@ export class EventListComponent {
     _event.onCategoryAdd.subscribe((category: EventsCategory) => {
       this.eventsCategoryList.push(category);
     });
+    _event.onEventEdit.subscribe(() => {
+      _data.getEventsCategory().subscribe((eventsCategory: EventsCategory[]) => {
+        this.eventsCategoryList = eventsCategory;
+      }, error => console.error(error));
+    });
     _event.onEventDelete.subscribe((event: Event) => {
       this.eventsList.splice(this.eventsList.indexOf(event), 1);
       _data.getEventsCategory().subscribe((eventsCategory: EventsCategory[]) => {

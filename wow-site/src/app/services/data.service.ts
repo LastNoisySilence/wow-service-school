@@ -25,4 +25,8 @@ export class DataService {
   getTrainers(): Observable<any> {
     return this._http.get('/trainers').map(res => res.json());
   }
+
+  postUserData(userData): Observable<any> {
+    return this._http.post('/subscription', JSON.stringify(userData), this.options);
+  }
 }
