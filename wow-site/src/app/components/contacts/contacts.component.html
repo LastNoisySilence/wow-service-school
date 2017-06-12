@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row uk-animation-slide-top-medium">
+    <div class="col-xs-12">
+      <h3 class="uk-heading-line"><span>Свяжитесь с нами</span></h3>
+    </div>
+    <div class="col-xs-12 col-md-6"></div>
+    <div class="col-xs-12 col-md-6">
+      <div>
+        <a href="tel:+380506171891"
+           class="uk-text-lead uk-button uk-button-text">
+          050-617-18-91
+        </a>
+        <br>
+        <a href="tel:+380673393528"
+           class="uk-text-lead uk-button uk-button-text">
+          067-339-35-28
+        </a>
+        <br>
+      </div>
+      <hr class="uk-divider-small">
+      <div>
+        <a href="mailto:catalina777@ukr.net"
+           class="uk-text-lead uk-button uk-button-text">
+          catalina777@ukr.net
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="col-xs-12 uk-margin-medium-top">
+      <h3 class="uk-heading-line"><span>{{subscribeTitle}}</span></h3>
+    </div>
+    <div class="col-xs-12 col-md-6"></div>
+    <div class="col-xs-12 col-md-6">
+      <form name="Subscription"
+            #Subscription="ngForm"
+            (ngSubmit)="onSubmit()"
+            class="uk-grid-small" uk-grid>
+        <div class="uk-width-1-1">
+          <input
+            name="Name"
+            #name
+            [(ngModel)]="userInfo.name"
+            required
+            [ngClass]="{
+            'uk-form-danger': (!Subscription?.form?.controls?.Name?.valid) && Subscription?.form?.controls?.Name?.touched,
+            'uk-form-success': Subscription?.form?.controls?.Name?.valid
+            }"
+            class="uk-input"
+            type="text"
+            placeholder="Имя">
+        </div>
+        <div class="uk-width-1-2@s">
+          <input
+            name="Email"
+            [(ngModel)]="userInfo.email"
+            required
+            [ngClass]="{
+            'uk-form-danger': (!Subscription?.form?.controls?.Email?.valid) && Subscription?.form?.controls?.Email?.touched,
+            'uk-form-success': Subscription?.form?.controls?.Email?.valid
+            }"
+            class="uk-input"
+            type="text"
+            placeholder="E-Mail">
+        </div>
+        <div class="uk-width-1-2@s">
+          <input
+            name="Phone"
+            [(ngModel)]="userInfo.phone"
+            required
+            [ngClass]="{
+            'uk-form-danger': (!Subscription?.form?.controls?.Phone?.valid) && Subscription?.form?.controls?.Phone?.touched,
+            'uk-form-success': Subscription?.form?.controls?.Phone?.valid
+            }"
+            class="uk-input"
+            type="text"
+            placeholder="Номер телефона">
+        </div>
+        <div class="uk-width-1-1" *ngIf="!isHideMessageInput">
+          <textarea
+            class="uk-textarea"
+            name="Message"
+            [(ngModel)]="userInfo.message"
+            rows="5"
+            placeholder="Сообщение">
+          </textarea>
+        </div>
+        <div class="uk-width-1-1">
+          <hr>
+        </div>
+        <div class="uk-width-1-1">
+          <button
+            type="submit"
+            [disabled]="!Subscription?.form?.valid"
+            class="uk-button uk-width-1-1 uk-button-secondary">
+            Отправить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

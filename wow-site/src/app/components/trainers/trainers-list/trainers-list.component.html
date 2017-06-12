@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="uk-animation-slide-left-medium"
+      *ngFor="let trainer of trainers; let even = even">
+        <app-trainer-item
+          *ngIf="even"
+          [trainer]="trainer"
+          [events]="events"
+          [(trainerInModal)]="currentTrainer"
+          (onCurrentTrainerChange)="changeTrainerInModal($event)">
+        </app-trainer-item>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div class="uk-animation-slide-right-medium"
+           *ngFor="let trainer of trainers; let odd = odd">
+        <app-trainer-item
+          *ngIf="odd"
+          [trainer]="trainer"
+          [events]="events"
+          [(trainerInModal)]="currentTrainer"
+          (onCurrentTrainerChange)="changeTrainerInModal($event)">
+        </app-trainer-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-trainer-modal [trainer]="trainerInModal"></app-trainer-modal>

@@ -1,0 +1,7 @@
+.uk-subnav > * > :first-child {
+  display: inline;
+}
+
+dl {
+  cursor: pointer;
+}

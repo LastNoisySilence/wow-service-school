@@ -1,0 +1,95 @@
+<div id="trainerDetailModal" uk-modal="center: true, stack: true">
+  <div
+    class="uk-modal-dialog uk-modal-body uk-padding-remove uk-width-3-5@s uk-width-1-1@m uk-width-3-5@l">
+    <button class="uk-modal-close-full visible-xs" type="button"
+            uk-close></button>
+    <button class="uk-modal-close-outside hidden-xs" type="button"
+            uk-close></button>
+    <form class="uk-grid-small uk-padding-small" uk-grid>
+      <h4
+        class="uk-comment-title uk-margin-remove uk-margin-small-bottom visible-sm visible-xs">
+        {{trainer?.fullName}}</h4>
+      <div class="uk-width-1-1@s uk-width-1-5@m">
+        <img class="uk-width-1-1@s" [src]="trainer?.photoUrl || ''" alt="Photo">
+      </div>
+      <div class="uk-width-1-1@s uk-width-4-5@m">
+        <h4 class="uk-comment-title uk-margin-remove hidden-sm hidden-xs">
+          {{trainer?.fullName}}</h4>
+        <ul
+          class="uk-comment-meta uk-subnav visible-xs uk-margin-remove-top">
+          <li>
+            <span class="uk-margin-small-right" uk-icon="icon: mail"></span>
+            {{trainer?.email}}
+          </li>
+          <li>
+            <span class="uk-margin-small-right" uk-icon="icon: phone"></span>
+            {{trainer?.phoneNumber}}
+          </li>
+          <li>
+            <span class="uk-margin-small-right" uk-icon="icon: world"></span>
+            {{trainer?.siteUrl}}
+          </li>
+        </ul>
+        <ul
+          class="uk-comment-meta uk-subnav hidden-xs uk-subnav-divider uk-margin-remove-top">
+          <li>
+            <span class="uk-margin-small-right" uk-icon="icon: mail"></span>
+            {{trainer?.email}}
+          </li>
+          <li>
+            <span class="uk-margin-small-right" uk-icon="icon: phone"></span>
+            {{trainer?.phoneNumber}}
+          </li>
+          <li>
+            <span class="uk-margin-small-right" uk-icon="icon: world"></span>
+            {{trainer?.siteUrl}}
+          </li>
+        </ul>
+        <div [innerHTML]="trainer?.description | safeHtml"></div>
+      </div>
+      <div *ngIf="trainer?.events?.length > 0" class="uk-width-1-1">
+        <h4 class="uk-heading-line uk-text-center"><span>Список тренингов</span>
+        </h4>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div *ngFor="let event of trainer?.events; let even = even">
+              <dl *ngIf="even"
+                  class="uk-description-list uk-description-list-divider"
+                  (click)="openEventDetails(event)">
+                <dt>{{event?.title}}</dt>
+                <dd>
+                  <ul
+                    class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                    <li>{{event?.place}}</li>
+                    <li>{{event?.type}}</li>
+                    <li>{{event?.date | date: 'shortDate'}}</li>
+                  </ul>
+                </dd>
+                <hr>
+              </dl>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div *ngFor="let event of trainer?.events; let odd = odd">
+              <dl *ngIf="odd"
+                  class="uk-description-list uk-description-list-divider"
+                  (click)="openEventDetails(event)">
+                <dt>{{event?.title}}</dt>
+                <dd>
+                  <ul
+                    class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                    <li>{{event?.place}}</li>
+                    <li>{{event?.type}}</li>
+                    <li>{{event?.date | date: 'shortDate'}}</li>
+                  </ul>
+                </dd>
+                <hr>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-event-modal [event]="currentEvent"></app-event-modal>

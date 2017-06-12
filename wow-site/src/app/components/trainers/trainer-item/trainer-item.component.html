@@ -1,0 +1,35 @@
+<div class="uk-card uk-card-default uk-margin-medium-bottom">
+  <div class="uk-card-body uk-padding-small">
+    <div class="uk-comment">
+      <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+          <img class="uk-comment-avatar" [src]="trainer?.photoUrl" width="80"
+               height="80" alt="Photo">
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove">
+            {{trainer?.fullName}}</h4>
+          <ul
+            class="uk-comment-meta uk-subnav visible-xs uk-margin-remove-top">
+            <li>{{trainer?.email}}</li>
+            <li>{{trainer?.phoneNumber}}</li>
+          </ul>
+          <ul
+            class="uk-comment-meta uk-subnav hidden-xs uk-subnav-divider uk-margin-remove-top">
+            <li>{{trainer?.email}}</li>
+            <li>{{trainer?.phoneNumber}}</li>
+          </ul>
+        </div>
+      </header>
+      <div class="uk-comment-body">
+        <div [innerHTML]="shortDescription(trainer?.description)"></div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-card-footer text-center">
+    <a (click)="openTrainerDetails(trainer)"
+       class="uk-button uk-button-text">
+      подробнее
+    </a>
+  </div>
+</div>
