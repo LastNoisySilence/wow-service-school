@@ -8,7 +8,9 @@ let bodyParser = require('body-parser');
 let trainers = require('./routes/trainers'),
     news = require('./routes/news'),
     events = require('./routes/events'),
+    consultings = require('./routes/consultings'),
     eventsCategory = require('./routes/eventsCategory'),
+    consultingsCategory = require('./routes/consultingsCategory'),
     upload = require('./routes/upload'),
     subscription = require('./routes/subscription');
 
@@ -28,7 +30,9 @@ app.use('/static', express.static(path.join(__dirname + '/static/default')));
 app.use('/', trainers);
 app.use('/', news);
 app.use('/', events);
+app.use('/', consultings);
 app.use('/', eventsCategory);
+app.use('/', consultingsCategory);
 app.use('/', upload);
 app.use('/', subscription);
 

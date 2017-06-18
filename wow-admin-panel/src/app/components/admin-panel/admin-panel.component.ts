@@ -13,7 +13,8 @@ export class AdminPanelComponent {
   tabs: any = [
     {title: "Новости", path: "/news-page"},
     {title: "Тренера", path: "/trainers-page"},
-    {title: "Мероприятия", path: "/events-page"}
+    {title: "Мероприятия", path: "/events-page"},
+    {title: "Консалтинги", path: "/consulting-page"},
   ];
   selectedTab: any = {};
 

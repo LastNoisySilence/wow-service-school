@@ -13,9 +13,10 @@
         class="uk-button uk-button-default uk-margin-small-top uk-width-1-1"
         (click)="openModalWindow()">
         Добавить {{
-        selectedTab.title === 'Новости' ?
-        'новость' : selectedTab.title === 'Мероприятия' ?
-        'мероприятие' : 'тренера'
+        selectedTab.title === 'Новости'
+        ? 'новость' : selectedTab.title === 'Мероприятия'
+        ? 'мероприятие' : selectedTab.title === 'Консалтинги'
+        ? 'консалтинг' : 'тренера'
         }}
       </button>
     </div>

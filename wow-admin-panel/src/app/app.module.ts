@@ -18,6 +18,9 @@ import {NewEventModalComponent} from './components/events/new-event-modal/new-ev
 import {EventItemComponent} from './components/events/event-item/event-item.component';
 import {EventListComponent} from './components/events/event-list/event-list.component';
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
+import { ConsultingListComponent } from './components/consultings/consulting-list/consulting-list.component';
+import { ConsultingItemComponent } from './components/consultings/consulting-item/consulting-item.component';
+import { ConsultingModalComponent } from './components/consultings/consulting-modal/consulting-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import {AdminPanelComponent} from './components/admin-panel/admin-panel.componen
     EventItemComponent,
     EventListComponent,
     AdminPanelComponent,
+    ConsultingListComponent,
+    ConsultingItemComponent,
+    ConsultingModalComponent,
   ],
   imports: [
     BrowserModule,

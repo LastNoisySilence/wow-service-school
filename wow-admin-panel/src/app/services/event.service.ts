@@ -3,6 +3,8 @@ import {News} from "../entities/news";
 import {Trainer} from "../entities/trainer";
 import {Event} from "../entities/event";
 import {EventsCategory} from "../entities/eventsCategory";
+import {Consulting} from "../entities/consulting";
+import {ConsultingCategory} from "../entities/consultingCategory";
 
 @Injectable()
 export class EventService {
@@ -19,9 +21,20 @@ export class EventService {
   onEventDelete: EventEmitter<Event> = new EventEmitter();
   onEventEdit: EventEmitter<Event> = new EventEmitter();
 
+  onConsultingAdd: EventEmitter<Consulting> = new EventEmitter();
+  onConsultingDelete: EventEmitter<Consulting> = new EventEmitter();
+  onConsultingEdit: EventEmitter<Consulting> = new EventEmitter();
+
   onCategoryAdd: EventEmitter<EventsCategory> = new EventEmitter();
   onCategoryDelete: EventEmitter<EventsCategory> = new EventEmitter();
   onCategoryEdit: EventEmitter<EventsCategory> = new EventEmitter();
+
+  onConsultingCategoryAdd: EventEmitter<ConsultingCategory> =
+    new EventEmitter();
+  onConsultingCategoryDelete: EventEmitter<ConsultingCategory> =
+    new EventEmitter();
+  onConsultingCategoryEdit: EventEmitter<ConsultingCategory> =
+    new EventEmitter();
 
   addNews(news: News) {
     this.onNewsAdd.emit(news);
@@ -53,6 +66,16 @@ export class EventService {
     this.onEventEdit.emit(event);
   }
 
+  addConsulting(consulting: Consulting) {
+    this.onConsultingAdd.emit(consulting);
+  }
+  deleteConsulting(consulting: Consulting) {
+    this.onConsultingDelete.emit(consulting);
+  }
+  editConsulting(consulting: Consulting) {
+    this.onConsultingEdit.emit(consulting);
+  }
+
   addCategory(category: EventsCategory) {
     this.onCategoryAdd.emit(category);
   }
@@ -61,5 +84,15 @@ export class EventService {
   }
   editCategory(category: EventsCategory) {
     this.onCategoryEdit.emit(category);
+  }
+
+  addConsultingCategory(consultingCategory: ConsultingCategory) {
+    this.onConsultingCategoryAdd.emit(consultingCategory);
+  }
+  deleteConsultingCategory(consultingCategory: ConsultingCategory) {
+    this.onConsultingCategoryDelete.emit(consultingCategory);
+  }
+  editConsultingCategory(consultingCategory: ConsultingCategory) {
+    this.onConsultingCategoryEdit.emit(consultingCategory);
   }
 }

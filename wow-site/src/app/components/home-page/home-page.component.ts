@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
-import {DataService} from "../../services/data.service";
-import {News} from "../../entities/news";
-import {Event} from "../../entities/event";
+import { Component } from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { News } from '../../entities/news';
+import { Event } from '../../entities/event';
+import { EventsCategory } from "app/entities/eventsCategory";
 declare let UIkit: any;
 
 @Component({
