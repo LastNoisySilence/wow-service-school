@@ -90,9 +90,16 @@
         <div class="uk-width-1-1">
           <button
             type="submit"
+            *ngIf="!isSent"
             [disabled]="!Subscription?.form?.valid"
             class="uk-button uk-width-1-1 uk-button-secondary">
             Отправить
+          </button>
+          <button
+            disabled
+            *ngIf="isSent"
+            class="uk-button uk-animation-slide-top-medium uk-button-success uk-width-1-1">
+            Отправлено
           </button>
         </div>
       </form>

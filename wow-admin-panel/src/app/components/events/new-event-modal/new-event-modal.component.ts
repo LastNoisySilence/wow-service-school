@@ -25,12 +25,16 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
     datePicker.datepicker().data('datepicker');
 
     $('#AddModal').on('beforehide', () => {
-      this.clearData();
+      if(!this.isCategoryAdd) {
+        this.clearData();
+        this.isCategoryAdd = true;
+      }
     });
   }
 
   ngOnDestroy(): void {
     $('#AddModal').remove();
+    $('#newEventsCategoryModal').remove();
   }
 
   event: Event = new Event();
@@ -38,6 +42,7 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
   @Input() categories: EventsCategory[];
   newCategory: EventsCategory = new EventsCategory();
   isEditMode: boolean = false;
+  isCategoryAdd: boolean = false;
   defaultImageSrc: string = '/static/emptyImage.png';
 
   eventTypes: string[] = [
@@ -174,7 +179,7 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
   update() {
     this._data.editEvent(this.event).subscribe(
       () => {
-        this._event.editEvent(this.event);
+        this._event.updateEvent(this.event);
         UIkit.modal('#AddModal').hide();
         this.clearData();
       }, error => console.error(error)
@@ -182,6 +187,7 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
   }
 
   openNewCategoryModal() {
+    this.isCategoryAdd = true;
     UIkit.modal('#newEventsCategoryModal').show();
   }
 

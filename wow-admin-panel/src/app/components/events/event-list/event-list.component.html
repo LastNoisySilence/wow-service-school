@@ -13,18 +13,19 @@
         <span
           class="uk-align-right uk-margin-remove-vertical uk-margin-small-left"
           (click)="removeCategory(category)"
+          *ngIf="!category?.secondaryKey"
           uk-icon="icon: close">
         </span>
         <span
           class="uk-align-right uk-margin-remove-vertical uk-margin-small-left"
           (click)="isReadonlyTitle = false"
-          *ngIf="isReadonlyTitle"
+          *ngIf="isReadonlyTitle && !category?.secondaryKey"
           uk-icon="icon: pencil">
         </span>
         <span
           class="uk-align-right uk-margin-remove-vertical uk-margin-small-left"
           (click)="renameCategory(category)"
-          *ngIf="!isReadonlyTitle"
+          *ngIf="!isReadonlyTitle && !category?.secondaryKey"
           uk-icon="icon: check">
         </span>
       </h3>

@@ -23,6 +23,7 @@ footer a {
 
 
 footer.uk-card {
+  border-radius: 0;
   border-top: 4px solid rgba(255, 0, 0, 0.52);
 }
 

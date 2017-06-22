@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/wow-service-school-v2');
+mongoose.connect('mongodb://localhost:27017/wow-service-school-v7');
 app.use('/', express.static(path.join(__dirname + '/../wow-site/dist')));
 app.use('/edit', express.static(path.join(__dirname + '/../wow-admin-panel/dist')));
 app.use('/images', express.static(path.join(__dirname + '/static/images')));

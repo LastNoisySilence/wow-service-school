@@ -10,14 +10,14 @@
           <h4 class="uk-comment-title uk-margin-remove">
             {{trainer?.fullName}}</h4>
           <ul
-            class="uk-comment-meta uk-subnav visible-xs uk-margin-remove-top">
-            <li>{{trainer?.email}}</li>
-            <li>{{trainer?.phoneNumber}}</li>
-          </ul>
-          <ul
-            class="uk-comment-meta uk-subnav hidden-xs uk-subnav-divider uk-margin-remove-top">
-            <li>{{trainer?.email}}</li>
-            <li>{{trainer?.phoneNumber}}</li>
+            class="uk-subnav uk-subnav-divider uk-margin-small-top uk-margin-remove-vertical"
+            uk-margin>
+            <li class="uk-margin-remove" *ngIf="trainer?.email">
+              {{trainer?.email}}
+            </li>
+            <li class="uk-margin-remove" *ngIf="trainer?.phoneNumber">
+              {{trainer?.phoneNumber}}
+            </li>
           </ul>
         </div>
       </header>

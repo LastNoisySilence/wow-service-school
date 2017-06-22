@@ -25,7 +25,7 @@ export class ContactsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('name') nameInput: ElementRef;
   isHideMessageInput: boolean = false;
   subscribeTitle: string = 'Напишите нам';
-
+  isSent: boolean = false;
   constructor(private _data: DataService, private route: ActivatedRoute) {
   }
 
@@ -47,12 +47,7 @@ export class ContactsComponent implements AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
-    this._data.postUserData(this.userInfo).subscribe(
-      res => {
-        console.info(res)
-      },
-      error => console.error(error)
-    );
+    this._data.postUserData(this.userInfo).subscribe(() => this.isSent = true, console.error);
   }
 
 }

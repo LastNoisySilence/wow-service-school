@@ -20,10 +20,12 @@ export class EventService {
   onEventAdd: EventEmitter<Event> = new EventEmitter();
   onEventDelete: EventEmitter<Event> = new EventEmitter();
   onEventEdit: EventEmitter<Event> = new EventEmitter();
+  onEventUpdate: EventEmitter<Event> = new EventEmitter();
 
   onConsultingAdd: EventEmitter<Consulting> = new EventEmitter();
   onConsultingDelete: EventEmitter<Consulting> = new EventEmitter();
   onConsultingEdit: EventEmitter<Consulting> = new EventEmitter();
+  onConsultingUpdate: EventEmitter<Consulting> = new EventEmitter();
 
   onCategoryAdd: EventEmitter<EventsCategory> = new EventEmitter();
   onCategoryDelete: EventEmitter<EventsCategory> = new EventEmitter();
@@ -65,6 +67,9 @@ export class EventService {
   editEvent(event: Event) {
     this.onEventEdit.emit(event);
   }
+  updateEvent(event: Event) {
+    this.onEventUpdate.emit(event);
+  }
 
   addConsulting(consulting: Consulting) {
     this.onConsultingAdd.emit(consulting);
@@ -74,6 +79,9 @@ export class EventService {
   }
   editConsulting(consulting: Consulting) {
     this.onConsultingEdit.emit(consulting);
+  }
+  updateConsulting(consulting: Consulting) {
+    this.onConsultingUpdate.emit(consulting);
   }
 
   addCategory(category: EventsCategory) {

@@ -5,3 +5,8 @@ textarea {
 a {
   font-size: 1.1em;
 }
+
+.uk-button-success:disabled {
+  background-color: #32d296;
+  color: white;
+}

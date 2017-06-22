@@ -30,7 +30,7 @@ export class DataService {
     return this._http.post('/consultings', JSON.stringify(consulting), this.options);
   }
   editConsulting(consulting): Observable<any> {
-    return this._http.put(`/consultings/${consulting._id}`, JSON.stringify(event), this.options);
+    return this._http.put(`/consultings/${consulting._id}`, JSON.stringify(consulting), this.options);
   }
   deleteConsulting(consulting): Observable<any> {
     return this._http.delete(`/consultings/${consulting._id}`, this.options);

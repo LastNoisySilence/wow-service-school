@@ -4,6 +4,7 @@ import {DataService} from "../../../services/data.service";
 import {EventService} from "../../../services/event.service";
 import {EventsCategory} from "../../../entities/eventsCategory";
 import {Trainer} from "../../../entities/trainer";
+import _ from 'lodash';
 
 @Component({
   selector: 'app-event-list',
@@ -19,48 +20,53 @@ export class EventListComponent {
   isReadonlyTitle: boolean = true;
 
   constructor(private _data: DataService, private _event: EventService) {
-    _data.getEvents().subscribe((event: Event[]) => {
-        this.eventsList = event
-      },
-      error => console.error(error));
+    this.loadData();
     _data.getTrainers().subscribe((trainers: Trainer[]) => {
       this.trainersList = trainers;
     }, error => console.error(error));
-    _data.getEventsCategory().subscribe((eventsCategory: EventsCategory[]) => {
-      this.eventsCategoryList = eventsCategory;
-    }, error => console.error(error));
-    _event.onEventAdd.subscribe((event: Event) => {
-      this.eventsList.push(event);
-      _data.getEventsCategory().subscribe((eventsCategory: EventsCategory[]) => {
-        this.eventsCategoryList = eventsCategory;
-      }, error => console.error(error));
-    });
     _event.onCategoryAdd.subscribe((category: EventsCategory) => {
       this.eventsCategoryList.push(category);
     });
-    _event.onEventEdit.subscribe(() => {
-      _data.getEventsCategory().subscribe((eventsCategory: EventsCategory[]) => {
-        this.eventsCategoryList = eventsCategory;
-      }, error => console.error(error));
+    _event.onEventUpdate.subscribe(() => {
+      this.loadData();
+    });
+    _event.onEventAdd.subscribe((event: Event) => {
+      this.eventsList.push(event);
+      this.eventsCategoryList.map((category: EventsCategory) => {
+        if (category._id === event.categoryId)
+          category.listOfEventsIds.push(event._id);
+      });
+      this.loadData();
     });
     _event.onEventDelete.subscribe((event: Event) => {
-      this.eventsList.splice(this.eventsList.indexOf(event), 1);
-      _data.getEventsCategory().subscribe((eventsCategory: EventsCategory[]) => {
-        this.eventsCategoryList = eventsCategory;
-      }, error => console.error(error));
+      this._data.deleteEvent(event).subscribe(() => {
+        _.remove(this.eventsList, (c: Event) => {
+          return c === event;
+        });
+        this.eventsCategoryList.map((category: EventsCategory) => {
+          _.remove(category.listOfEventsIds, (id) => {
+            return id === event._id;
+          });
+        });
+      }, console.error);
     });
   }
 
+  loadData() {
+    this._data.getEvents().subscribe((events: Event[]) => {
+      this.eventsList = events;
+    }, console.error);
+    this._data.getEventsCategory().subscribe((categories: EventsCategory[]) => {
+      this.eventsCategoryList = categories;
+    }, console.error);
+  }
+
   getEventByCategory(category: EventsCategory) {
-    let eventsByCategory: Event[] = [];
-    this.eventsList.map(event => {
-      category.listOfEventsIds.map(id => {
-        if (event._id === id) {
-          eventsByCategory.push(event);
-        }
-      });
+    return this.eventsList.filter(e => {
+      return category.listOfEventsIds.filter(id => {
+        return e._id === id;
+      })[0];
     });
-    return eventsByCategory;
   }
 
   getFullCategories() {
@@ -72,17 +78,14 @@ export class EventListComponent {
   renameCategory(category: EventsCategory) {
     this.isReadonlyTitle = true;
     this._data.editEventsCategory(category).subscribe(
-      () => {
-      },
-      (error) => console.error(error)
+      () => {},
+      console.error
     )
   }
 
   removeCategory(category: EventsCategory) {
     this._data.deleteEventsCategory(category).subscribe(
       () => {
-        this.eventsCategoryList
-          .splice(this.eventsCategoryList.indexOf(category), 1);
         this._data.getEventsCategory().subscribe(
           (eventsCategory: EventsCategory[]) => {
             this.eventsCategoryList = eventsCategory;

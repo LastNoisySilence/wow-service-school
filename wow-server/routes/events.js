@@ -36,28 +36,27 @@ db.once('open', function () {
   });
 
   router.put('/events/:id', function (req, res) {
-    Event.findOneAndUpdate({_id: req.params.id}, req.body, function (err, obj) {
+    Event.findOne({_id: req.params.id}, function (err, event) {
       if (err) return console.error(err);
-      if (obj && obj.categoryId) {
-        EventCategory.findOne({_id: obj.categoryId}, (error, object) => {
-          if (err) return console.error(error);
-          if (object && object.listOfEventsIds.indexOf(req.params.id) > -1) {
-            object.listOfEventsIds.splice(object.listOfEventsIds.indexOf(req.params.id), 1);
-            object.save((saveError, saveData) => {
-              if (saveError) return console.error(saveError);
+      Event.update({_id: req.params.id}, req.body, (eventUpdateError) => {
+        if (eventUpdateError) return console.error(eventUpdateError);
+        if (req.body.categoryId !== event.categoryId) {
+          EventCategory.findOne({_id: req.body.categoryId}, (err, category) => {
+            if (err) return console.error(err);
+            category.listOfEventsIds.push(req.body._id);
+            category.save((categorySaveError) => {
+              if (categorySaveError) return console.error(categorySaveError);
             });
-          }
-        });
-      }
-      if (req.body && req.body.categoryId) {
-        EventCategory.findOne({_id: req.body.categoryId}, (error, object) => {
-          if (err) return console.error(error);
-          object.listOfEventsIds.push(req.params.id);
-          object.save((saveError, saveData) => {
-            if (saveError) return console.error(saveError);
           });
-        });
-      }
+          EventCategory.findOne({_id: event.categoryId}, (err, category) => {
+            if (err) return console.error(err);
+            category.listOfEventsIds.splice(category.listOfEventsIds.indexOf(req.params.id), 1);
+            category.save((categorySaveError) => {
+              if (categorySaveError) return console.error(categorySaveError);
+            });
+          });
+        }
+      });
       res.sendStatus(200);
     })
   });

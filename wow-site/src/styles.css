@@ -21,6 +21,10 @@ p, h1, h2, h3, h4, a, div, em {
   box-shadow: 0 2px 16px rgba(0, 0, 0, .1) !important;
 }
 
+.uk-card {
+  border-radius: 7px;
+}
+
 html, body {
   height: 100%;
 }
