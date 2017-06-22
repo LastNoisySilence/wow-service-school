@@ -4,7 +4,7 @@
     <button class="uk-modal-close-full visible-xs" type="button" uk-close></button>
     <button class="uk-modal-close-outside hidden-xs" type="button" uk-close></button>
     <div class="uk-card uk-card-default">
-      <div class="uk-card-media-top text-center">
+      <div class="uk-card-media-top text-center" *ngIf="event?.imagePath">
         <img [src]="event?.imagePath || ''">
       </div>
       <div class="uk-card-header">

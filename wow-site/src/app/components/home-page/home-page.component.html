@@ -9,7 +9,7 @@
           </h1>
           <p class="uk-text-lead gray uk-margin-remove">
             в которой учат сервису!
-          <hr class="uk-divider-small">
+          <hr class="uk-divider-small text-left">
           <ul
             class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
             <li><a href="#target" uk-scroll="offset: -510">подробнее</a></li>
@@ -51,7 +51,7 @@
         <div class="uk-card uk-card-default uk-margin-medium-bottom"
              uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 100; repeat: true"
              *ngFor="let eventItem of events">
-          <div class="uk-card-media-top text-center">
+          <div class="uk-card-media-top text-center" *ngIf="eventItem?.imagePath">
             <img [src]="eventItem?.imagePath">
           </div>
           <div class="uk-card-header uk-padding-small">
@@ -102,7 +102,7 @@
         <div class="uk-card uk-card-default uk-margin-medium-bottom"
              uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 100; repeat: true"
              *ngFor="let newsItem of news">
-          <div class="uk-card-media-top text-center uk-cover-container">
+          <div class="uk-card-media-top text-center uk-cover-container" *ngIf="newsItem?.imagePath">
             <img class="image-wrapper" [src]="newsItem?.imagePath">
           </div>
           <div class="uk-card-header uk-padding-small">

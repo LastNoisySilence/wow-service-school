@@ -1,5 +1,5 @@
 <div class="uk-card uk-card-default uk-margin-medium-bottom">
-  <div class="uk-card-media-top text-center uk-cover-container">
+  <div class="uk-card-media-top text-center uk-cover-container" *ngIf="newsItem?.imagePath">
     <img class="image-wrapper" [src]="newsItem?.imagePath">
   </div>
   <div class="uk-card-header uk-padding-small">
