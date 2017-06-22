@@ -1,0 +1,30 @@
+<div>
+  <div class="uk-card uk-card-default uk-margin-medium-bottom">
+    <div class="uk-card-body uk-padding-small">
+      <h3 class="uk-heading-divider uk-text-left">
+        <span>
+          {{consulting?.title}}
+        </span>
+      </h3>
+      <dl class="uk-description-list text-left uk-description-list-divider">
+        <dt *ngIf="consulting?.cost.length > 0">Стоимость</dt>
+        <dd>{{consulting?.cost}}</dd>
+        <dt *ngIf="consulting?.duration.length > 0">Временные затраты</dt>
+        <dd>{{consulting?.duration}}</dd>
+      </dl>
+      <hr>
+      <div class="uk-grid-divider uk-flex-center" uk-grid>
+        <div>
+          <a class="uk-button uk-button-text" (click)="editConsulting()">
+            Редактировать
+          </a>
+        </div>
+        <div>
+          <a class="uk-button uk-button-text" (click)="deleteConsulting()">
+            Удалить
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

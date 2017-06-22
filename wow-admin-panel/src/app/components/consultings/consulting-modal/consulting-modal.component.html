@@ -1,0 +1,89 @@
+<div id="AddModal" uk-modal="bg-close: false">
+  <div
+    class="uk-modal-dialog uk-modal-body uk-width-1-1@s uk-width-4-5@m uk-width 5-6@l">
+    <div class="uk-grid-small" uk-grid>
+      <div class="uk-width-1-1@s uk-width-1-2@m">
+        <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+                (click)="openNewCategoryModal()"
+                *ngIf="categories.length === 0">
+          Добавить категорию
+        </button>
+        <div uk-grid>
+          <div *ngIf="categories.length > 0" class="uk-width-expand">
+            <select
+              class="uk-select"
+              [(ngModel)]="newConsulting.categoryId">
+              <option value="" disabled>Категория</option>
+              <option
+                *ngFor="let category of categories"
+                [ngValue]="category._id">
+                {{category?.title}}
+              </option>
+            </select>
+          </div>
+          <span
+            uk-icon="icon: plus"
+            (click)="openNewCategoryModal()"
+            *ngIf="categories?.length > 0">
+          </span>
+        </div>
+      </div>
+      <div class="uk-width-1-1@s uk-width-1-2@m">
+        <input class="uk-input" type="text"
+               [(ngModel)]="newConsulting.title"
+               placeholder="Название консалтинга...">
+      </div>
+      <div class="uk-width-1-1@s uk-width-1-2@m">
+        <input class="uk-input" type="text"
+               [(ngModel)]="newConsulting.cost"
+               placeholder="Стоимость...">
+      </div>
+      <div class="uk-width-1-1@s uk-width-1-2@m">
+        <input class="uk-input" type="text"
+               [(ngModel)]="newConsulting.duration"
+               placeholder="Временные затраты...">
+      </div>
+      <div class="uk-width-1-1">
+        <ul class="uk-subnav uk-subnav-divider uk-flex-center">
+          <li *ngFor="let editForm of forms"
+              [ngClass]="{'uk-active': selectedForm === editForm}">
+            <a (click)="switchEditor(editForm)">
+              {{editForm?.title}}
+            </a>
+          </li>
+        </ul>
+        <textarea [froalaEditor]="options"
+                  [(ngModel)]="newConsulting[selectedForm?.path]"
+                  class="uk-textarea uk-margin-small-top uk-height-1-1">
+          </textarea>
+      </div>
+      <div class="uk-width-1-1">
+        <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+                (click)="add()" *ngIf="!isEditMode">
+          Добавить
+        </button>
+        <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+                (click)="update()" *ngIf="isEditMode">
+          Редактировать
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="newConsultingCategoryModal" uk-modal="bg-close: false">
+  <div
+    class="uk-modal-dialog uk-modal-body uk-width-1-1@s uk-width-4-5@m uk-width 5-6@l">
+    <div class="uk-width-1-1 uk-margin-small-bottom">
+      <input class="uk-input" type="text"
+             placeholder="Название категории..."
+             [(ngModel)]="newCategory.title"
+             name="Category title" required>
+    </div>
+    <div class="uk-width-1-1">
+      <button type="submit" class="uk-button-default uk-button uk-width-1-1"
+              (click)="addNewCategory()">
+        Добавить
+      </button>
+    </div>
+  </div>
+</div>
