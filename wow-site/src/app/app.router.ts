@@ -1,3 +1,4 @@
+import { ConsultingListComponent } from './components/consulting/consulting-list/consulting-list.component';
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomePageComponent} from
@@ -17,6 +18,7 @@ export const router: Routes = [
   {path: 'news-page', component: NewsListComponent},
   {path: 'events-page', component: EventsListComponent},
   {path: 'trainers-page', component: TrainersListComponent},
+  {path: 'consulting-page', component: ConsultingListComponent},
   {path: 'about-page', component: AboutComponent},
   {path: 'contact-page', component: ContactsComponent},
   {path: 'contact-page/:email', component: ContactsComponent}

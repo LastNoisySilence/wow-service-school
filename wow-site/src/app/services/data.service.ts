@@ -14,8 +14,16 @@ export class DataService {
     return this._http.get('/events').map(res => res.json());
   }
 
+  getConsulting(): Observable<any> {
+    return this._http.get('/consultings').map(res => res.json());
+  }
+
   getEventsCategory(): Observable<any> {
     return this._http.get('/eventsCategory').map(res => res.json());
+  }
+
+  getConsultingCategories(): Observable<any> {
+    return this._http.get('/consultingsCategory').map(res => res.json());
   }
 
   getNews(): Observable<any> {

@@ -26,7 +26,7 @@ export class HeaderComponent {
     },
     {
       title: 'Консалтинг',
-      path: '/home-page'
+      path: '/consulting-page'
     },
     {
       title: 'Контакты',

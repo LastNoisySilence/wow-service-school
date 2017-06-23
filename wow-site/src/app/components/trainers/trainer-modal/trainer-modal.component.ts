@@ -1,7 +1,8 @@
 import {Component, OnDestroy, Input, OnInit} from '@angular/core';
 import {Trainer} from "../../../entities/trainer";
 import {Event} from "../../../entities/event";
-declare let $, UIkit: any;
+import _ from 'lodash';
+declare const $, UIkit: any;
 
 @Component({
   selector: 'app-trainer-modal',
@@ -15,6 +16,11 @@ export class TrainerModalComponent implements OnDestroy, OnInit {
     });
   }
 
+  getTrainerEventsInChunks() {
+    return _.chunk(this.trainer.events, 3);
+  };
+
+  // tslint:disable-next-line:member-ordering
   @Input() trainer: Trainer;
   currentEvent: Event;
 
@@ -26,6 +32,4 @@ export class TrainerModalComponent implements OnDestroy, OnInit {
     this.currentEvent = event;
     UIkit.modal('#eventDetailModal').show();
   }
-
-
 }

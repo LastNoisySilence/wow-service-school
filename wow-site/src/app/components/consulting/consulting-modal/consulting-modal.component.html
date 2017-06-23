@@ -1,0 +1,35 @@
+<div id="consultingDetailModal" uk-modal="center: true">
+    <div class="uk-modal-dialog uk-modal-body uk-padding-remove uk-width-1-1 uk-width-1-2@l">
+        <button class="uk-modal-close-full visible-xs" type="button" uk-close></button>
+        <button class="uk-modal-close-outside hidden-xs" type="button" uk-close></button>
+        <div class="uk-card uk-card-default">
+            <div class="uk-card-header">
+                <div class="col-xs-12">
+                    <h3 class="uk-margin-remove">
+                        <span>{{consulting?.title}}</span>
+                    </h3>
+                </div>
+            </div>
+            <div class="uk-card-body uk-padding-medium clearfix">
+                <div class="col-sm-6 col-xs-12" *ngIf="consulting?.cost">
+                    <dl class="uk-description-list">
+                        <dt>Стоимость</dt>
+                        <dd>{{consulting?.cost}}<br></dd>
+                    </dl>
+                </div>
+                <div class="col-sm-6 col-xs-12" *ngIf="consulting?.duration">
+                    <dl class="uk-description-list">
+                        <dt>Временные затраты</dt>
+                        <dd>{{consulting?.duration}}</dd>
+                    </dl>
+                </div>
+                <div class="col-xs-12">
+                    <hr *ngIf="consulting?.description">
+                    <div class="article" [innerHTML]="consulting?.description | safeHtml"></div>
+                    <hr *ngIf="consulting?.result">
+                    <div class="article" [innerHTML]="consulting?.result | safeHtml"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

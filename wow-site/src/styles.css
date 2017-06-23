@@ -1,56 +1,72 @@
 @import url('https://fonts.googleapis.com/css?family=Arsenal&subset=cyrillic');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500&subset=cyrillic');
-
-body, html {
-  background-color: white !important;
-  height: auto;
-  min-height: 100vh;
-  font-size: 15px !important;
+body,
+html {
+    background-color: white !important;
+    height: auto;
+    min-height: 100vh;
+    font-size: 15px !important;
 }
 
 * {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 400;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
 }
 
-p, h1, h2, h3, h4, a, div, em {
-  color: #666666 !important;
+p,
+h1,
+h2,
+h3,
+h4,
+a,
+div,
+em {
+    color: #666666 !important;
 }
 
 .uk-card-default {
-  box-shadow: 0 2px 16px rgba(0, 0, 0, .1) !important;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, .1) !important;
 }
 
-.uk-modal-dialog.uk-modal-body {
-  margin: 0 !important;
-}
+
+/*.uk-modal-dialog.uk-modal-body {
+    margin: 0 !important;
+}*/
 
 .uk-card {
-  border-radius: 7px;
+    border-radius: 7px;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 #wrap {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 #main {
-  overflow: auto;
-  padding-bottom: 80px; /* this needs to be bigger than footer height*/
+    overflow: auto;
+    padding-bottom: 80px;
+    /* this needs to be bigger than footer height*/
 }
 
 footer {
-  position: relative;
-  margin-top: -80px; /* negative value of footer height */
-  height: 80px;
-  clear: both;
+    position: relative;
+    margin-top: -80px;
+    /* negative value of footer height */
+    height: 80px;
+    clear: both;
 }
 
 #toTop {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
+.uk-card:hover {
+    transition: box-shadow .1s ease-in-out;
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16) !important;
 }

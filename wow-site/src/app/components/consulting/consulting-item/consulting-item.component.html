@@ -1,0 +1,35 @@
+<div class="uk-card uk-card-default uk-margin-medium-bottom">
+    <div class="uk-card-header uk-padding-small">
+        <div class="col-xs-12">
+            <h3 class="uk-margin-remove">
+                <span>{{consulting?.title}}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="uk-card-body uk-padding-small clearfix" *ngIf="consulting?.cost">
+        <div class="col-sm-6 col-xs-12">
+            <dl class="uk-description-list">
+                <dt>Стоимость</dt>
+                <dd>{{consulting?.cost}}<br></dd>
+            </dl>
+        </div>
+        <div class="col-sm-6 col-xs-12" *ngIf="consulting?.duration">
+            <dl class="uk-description-list">
+                <dt>Временные затраты</dt>
+                <dd>{{consulting?.duration}}</dd>
+            </dl>
+        </div>
+        <div class="col-xs-12" *ngIf="consulting?.description">
+            <hr>
+            <div class="uk-comment-body">
+                <div [innerHTML]="shortDescription(consulting?.description)"></div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-margin-small visible-xs"></div>
+    <div class="uk-card-footer text-center">
+        <a class="uk-button uk-button-text" (click)="openConsultingtDetails(consulting)">
+      подробнее
+    </a>
+    </div>
+</div>

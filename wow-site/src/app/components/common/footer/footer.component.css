@@ -1,34 +1,36 @@
 @media (max-width: 639px) {
-  .info-block {
-    text-align: center;
-  }
+    .info-block {
+        text-align: center;
+    }
 }
 
 footer {
-  min-height: 60px;
+    min-height: 60px;
 }
 
 footer .uk-icon {
-  color: rgba(0, 0, 0, 0.65);
-  text-align: left;
-}
-.uk-icon:last-child {
-  margin-left: -3px;
-}
-footer a {
-  color: rgba(0, 0, 0, 0.65);
-  font-family: 'Open Sans', sans-serif;
-  padding: 2px 0;
+    color: rgba(0, 0, 0, 0.65);
+    text-align: left;
 }
 
+.uk-icon:last-child {
+    margin-left: -3px;
+}
+
+footer a {
+    color: rgba(0, 0, 0, 0.65);
+    font-family: 'Open Sans', sans-serif;
+    padding: 2px 0;
+}
 
 footer.uk-card {
-  border-radius: 0;
-  border-top: 4px solid rgba(255, 0, 0, 0.52);
+    border-radius: 0;
+    border-top: 4px solid rgba(255, 0, 0, 0.52);
+    box-shadow: none !important;
 }
 
 @media screen and (max-width: 396px) {
-  .subscribe-button {
-    margin-top: 10px;
-  }
+    .subscribe-button {
+        margin-top: 10px;
+    }
 }

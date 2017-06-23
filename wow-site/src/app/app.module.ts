@@ -25,6 +25,9 @@ import { TrainersListComponent } from './components/trainers/trainers-list/train
 import { TrainerItemComponent } from './components/trainers/trainer-item/trainer-item.component';
 import { TrainerModalComponent } from './components/trainers/trainer-modal/trainer-modal.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { ConsultingListComponent } from './components/consulting/consulting-list/consulting-list.component';
+import { ConsultingItemComponent } from './components/consulting/consulting-item/consulting-item.component';
+import { ConsultingModalComponent } from './components/consulting/consulting-modal/consulting-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     TrainersListComponent,
     TrainerItemComponent,
     TrainerModalComponent,
-    ContactsComponent
+    ContactsComponent,
+    ConsultingListComponent,
+    ConsultingItemComponent,
+    ConsultingModalComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
