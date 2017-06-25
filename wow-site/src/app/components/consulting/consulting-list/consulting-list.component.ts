@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from './../../../services/data.service';
 import { ConsultingCategory } from './../../../entities/consultingCategory';
 import { Consulting } from './../../../entities/consulting';
@@ -15,9 +16,19 @@ export class ConsultingListComponent {
   categoryList: ConsultingCategory[] = [];
   consultingInModal: Consulting;
 
-  constructor(private _data: DataService) {
+  constructor(private _data: DataService, private _route: ActivatedRoute) {
     _data.getConsulting().subscribe(
-      (consultingList: Consulting[]) => this.consultingList = consultingList,
+      (consultingList: Consulting[]) => {
+        this.consultingList = consultingList;
+        this._route.params.subscribe(param => {
+          if (param.id) {
+            this.consultingInModal = this.consultingList.filter((consulting: Consulting) => {
+              return consulting._id === param.id;
+            })[0];
+            UIkit.modal('#consultingDetailModal').show();
+          }
+        });
+      },
       console.error
     );
     _data.getConsultingCategories().subscribe(
@@ -39,7 +50,6 @@ export class ConsultingListComponent {
   }
 
   changeConsultingInModal(consulting: Consulting) {
-    console.log('List', consulting);
     this.consultingInModal = consulting;
   }
 }

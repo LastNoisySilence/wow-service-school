@@ -28,12 +28,12 @@ em {
     box-shadow: 0 2px 16px rgba(0, 0, 0, .1) !important;
 }
 
-
-/*.uk-modal-dialog.uk-modal-body {
-    margin: 0 !important;
-}*/
-
 .uk-card {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.uk-modal-dialog.uk-modal-body {
     border-radius: 7px;
 }
 

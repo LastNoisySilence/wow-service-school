@@ -5,7 +5,7 @@ import {EventService} from "../../../services/event.service";
 import {EventsCategory} from "../../../entities/eventsCategory";
 import {Trainer} from "../../../entities/trainer";
 
-declare let UIkit, $: any;
+declare const UIkit, $: any;
 
 @Component({
   selector: 'app-new-event-modal',
@@ -14,29 +14,6 @@ declare let UIkit, $: any;
 })
 
 export class NewEventModalComponent implements OnDestroy, OnInit {
-  ngOnInit(): void {
-    let datePicker = $('.datepicker-here');
-    datePicker.datepicker({
-      timepicker: true,
-      onSelect: (fd, date) => {
-        this.event.date = date;
-      }
-    });
-    datePicker.datepicker().data('datepicker');
-
-    $('#AddModal').on('beforehide', () => {
-      if(!this.isCategoryAdd) {
-        this.clearData();
-        this.isCategoryAdd = true;
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    $('#AddModal').remove();
-    $('#newEventsCategoryModal').remove();
-  }
-
   event: Event = new Event();
   @Input() trainers: Trainer[];
   @Input() categories: EventsCategory[];
@@ -76,14 +53,39 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
   currentEditKey: string = 'audience';
   selectedForm: any = this.editForms[0];
 
+  ngOnInit(): void {
+    let datePicker = $('.datepicker-here');
+    datePicker.datepicker({
+      timepicker: true,
+      onSelect: (fd, date) => {
+        this.event.date = date;
+      }
+    });
+    datePicker.datepicker().data('datepicker');
+
+    $('#AddModal').on('beforehide', () => {
+      if(!this.isCategoryAdd) {
+        this.clearData();
+      }
+      this.isCategoryAdd = false;
+    });
+  }
+
+  ngOnDestroy(): void {
+    $('#AddModal').remove();
+    $('#newEventsCategoryModal').remove();
+  }
+
   constructor(private _data: DataService, private _event: EventService) {
-    this.event.type = this.eventTypes[0];
     _event.onEventEdit.subscribe((event: Event) => {
       this.event = event;
-      $('.datepicker-here')
-        .datepicker()
-        .data('datepicker')
-        .selectDate(new Date(event.date));
+      console.log(this.event);
+      if (this.event.date) {
+        $('.datepicker-here')
+          .datepicker()
+          .data('datepicker')
+          .selectDate(new Date(event.date));
+      }
       this.currentEditKey = 'audience';
       this.selectedForm = this.editForms[0];
       this.defaultImageSrc = event.imagePath.length > 0

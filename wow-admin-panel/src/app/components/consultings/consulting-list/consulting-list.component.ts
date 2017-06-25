@@ -78,19 +78,13 @@ export class ConsultingListComponent {
   renameCategory(category: ConsultingCategory) {
     this.isReadonlyTitle = true;
     this._data.editConsultingCategory(category).subscribe(
-      () => {
-      }, console.error
+      () => {}, console.error
     )
   }
 
   removeCategory(category: ConsultingCategory) {
     this._data.deleteConsultingCategory(category).subscribe(
-      () => {
-        this._data.getConsultingCategory().subscribe((categoryList: ConsultingCategory[]) => {
-          this.categoryList = categoryList;
-        }, console.error);
-      },
-      console.error
+      () => this.loadData(), console.error
     );
   }
 }

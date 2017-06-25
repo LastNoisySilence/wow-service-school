@@ -17,8 +17,10 @@ export const router: Routes = [
   {path: 'home-page', component: HomePageComponent},
   {path: 'news-page', component: NewsListComponent},
   {path: 'events-page', component: EventsListComponent},
+  {path: 'events-page/:id', component: EventsListComponent},
   {path: 'trainers-page', component: TrainersListComponent},
   {path: 'consulting-page', component: ConsultingListComponent},
+  {path: 'consulting-page/:id', component: ConsultingListComponent},
   {path: 'about-page', component: AboutComponent},
   {path: 'contact-page', component: ContactsComponent},
   {path: 'contact-page/:email', component: ContactsComponent}

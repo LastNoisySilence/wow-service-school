@@ -6,6 +6,7 @@ let db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 let ConsultingCategory = require('../models/consultingCategory');
+let Consulting = require('../models/consulting');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -36,6 +37,9 @@ db.once('open', function () {
       if (err) return console.error(err);
       ConsultingCategory.findOne({secondaryKey: 'other'}, (findError, findObject) => {
         if (findObject) {
+          Consulting.update({categoryId: req.params.id}, {$set: {categoryId: findObject._id}}, {multi: true}, (err) => {
+            if (err) return console.error(err);
+          });
           findObject.listOfConsultingIds =
             findObject.listOfConsultingIds.concat(deletedObject.listOfConsultingIds);
           findObject.save((otherSavedError, otherSavedData) => {

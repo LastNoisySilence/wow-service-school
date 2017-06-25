@@ -3,7 +3,7 @@ import { DataService } from '../../services/data.service';
 import { News } from '../../entities/news';
 import { Event } from '../../entities/event';
 import { EventsCategory } from "app/entities/eventsCategory";
-declare let UIkit: any;
+declare const UIkit: any;
 
 @Component({
   selector: 'app-home-page',
@@ -18,15 +18,13 @@ export class HomePageComponent {
 
   constructor(private _data: DataService) {
     _data.getNews().subscribe(
-      (news: News[]) => this.news = news,
-      error => console.error(error)
+      (news: News[]) => this.news = news, console.error
     );
     _data.getEvents().subscribe(
       (events: Event[]) => {
         this.events = events;
         this.currentEvent = this.events[0];
-      },
-      error => console.error(error)
+      }, console.error
     );
   }
 

@@ -11,9 +11,9 @@ declare const $, UIkit: any;
 })
 export class TrainerModalComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
-    $('#eventDetailModal').on('hidden', () => {
+    /*$('#eventDetailModal').on('hidden', () => {
       UIkit.modal('#trainerDetailModal').show();
-    });
+    });*/
   }
 
   getTrainerEventsInChunks() {
@@ -26,6 +26,7 @@ export class TrainerModalComponent implements OnDestroy, OnInit {
 
   ngOnDestroy() {
     $('#trainerDetailModal').remove();
+    $('#subscriptionModal').remove();
   }
 
   openEventDetails(event){

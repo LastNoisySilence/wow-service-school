@@ -6,6 +6,7 @@ let db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 let EventsCategory = require('../models/eventsCategory');
+let Event = require('../models/event');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -36,6 +37,9 @@ db.once('open', function () {
       if (err) return console.error(err);
       EventsCategory.findOne({secondaryKey: 'other'}, (findError, findObject) => {
         if (findObject) {
+          Event.update({categoryId: req.params.id}, {$set: {categoryId: findObject._id}}, {multi: true}, (err) => {
+            if (err) return console.error(err);
+          });
           findObject.listOfEventsIds =
             findObject.listOfEventsIds.concat(deletedObject.listOfEventsIds);
           findObject.save((otherSavedError, otherSavedData) => {

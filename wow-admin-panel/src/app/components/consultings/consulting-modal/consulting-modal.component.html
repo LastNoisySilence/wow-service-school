@@ -13,7 +13,9 @@
             <select
               class="uk-select"
               [(ngModel)]="newConsulting.categoryId">
-              <option value="" disabled>Категория</option>
+              <option value="" disabled selected style="display: none;">
+                Категория
+              </option>
               <option
                 *ngFor="let category of categories"
                 [ngValue]="category._id">
@@ -59,11 +61,11 @@
       </div>
       <div class="uk-width-1-1">
         <button type="submit" class="uk-button-default uk-button uk-width-1-1"
-                (click)="add()" *ngIf="!isEditMode">
+                (click)="add()" *ngIf="!isEditMode" [disabled]="newConsulting?.categoryId === ''">
           Добавить
         </button>
         <button type="submit" class="uk-button-default uk-button uk-width-1-1"
-                (click)="update()" *ngIf="isEditMode">
+                (click)="update()" *ngIf="isEditMode" [disabled]="newConsulting?.categoryId === ''">
           Редактировать
         </button>
       </div>

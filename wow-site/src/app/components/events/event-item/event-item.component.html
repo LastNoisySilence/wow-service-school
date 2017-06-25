@@ -1,39 +1,46 @@
 <div class="uk-card uk-card-default uk-margin-medium-bottom">
-  <div class="uk-card-media-top text-center">
-    <img [src]="event?.imagePath">
-  </div>
-  <div class="uk-card-header uk-padding-small">
-    <div class="col-xs-12">
-      <h3 class="uk-margin-remove">
-        <span>{{event?.title}}</span>
-      </h3>
+    <div class="uk-card-media-top text-center">
+        <img [src]="event?.imagePath || ''">
     </div>
-  </div>
-  <div class="uk-card-body uk-padding-small clearfix">
-    <div class="col-sm-6 col-xs-12">
-      <dl class="uk-description-list uk-margin-remove-bottom">
-        <dt>Тип мероприятия</dt>
-        <dd>{{event?.type}} <br></dd>
-        <dt>Стоимость</dt>
-        <dd>{{event?.cost}}</dd>
-      </dl>
+    <div class="uk-card-header uk-padding-small">
+        <div class="col-xs-12">
+            <h3 class="uk-margin-remove">
+                <span>{{event?.title}}</span>
+            </h3>
+        </div>
     </div>
-    <div class="col-sm-6 col-xs-12">
-      <dl class="uk-description-list uk-margin-remove-bottom">
-        <dt>Дата и время начала</dt>
-        <dd>{{event?.date | date:'fullDate'}} в {{event?.date
-          | date:"HH:mm"}}
-        </dd>
-        <dt>Место проведения</dt>
-        <dd>{{event?.place}}</dd>
-      </dl>
+    <div class="uk-card-body uk-padding-small clearfix">
+        <div class="col-sm-6 col-xs-12">
+            <dl class="uk-description-list uk-margin-remove-bottom">
+                <dt>Тип мероприятия</dt>
+                <dd>{{event?.type}} <br></dd>
+                <dt>Стоимость</dt>
+                <dd>{{event?.cost}}</dd>
+            </dl>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <dl class="uk-description-list uk-margin-remove-bottom">
+                <dt>Дата и время начала</dt>
+                <dd>{{event?.date | date:'fullDate'}} в {{event?.date | date:"HH:mm"}}
+                </dd>
+                <dt>Место проведения</dt>
+                <dd>{{event?.place}}</dd>
+            </dl>
+        </div>
     </div>
-  </div>
-  <div class="uk-margin-small visible-xs"></div>
-  <div class="uk-card-footer text-center">
-    <a class="uk-button uk-button-text"
-       (click)="openEventDetails(event)">
-      подробнее
-    </a>
-  </div>
+    <div class="uk-margin-small visible-xs"></div>
+    <div class="uk-card-footer text-center">
+        <div class="uk-grid-divider uk-margin-small uk-flex-center" uk-grid>
+            <div>
+                <a class="uk-button uk-button-text" (click)="openEventDetails(event)">
+                  подробнее
+                </a>
+            </div>
+            <div>
+                <a class="uk-button uk-button-text" (click)="openSubscriptionModal(event)">
+                  принять участие
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

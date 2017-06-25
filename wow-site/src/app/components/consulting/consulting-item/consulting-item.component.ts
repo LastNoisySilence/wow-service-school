@@ -21,6 +21,12 @@ export class ConsultingItemComponent {
     UIkit.modal('#consultingDetailModal').show();
   }
 
+  openSubscriptionModal(consulting: Consulting) {
+    this.currentConsulting = consulting;
+    this.onCurrentConsultingChange.emit(consulting);
+    UIkit.modal('#subscriptionModal').show();
+  }
+
   shortDescription(text: string) {
     return text.length > 250 ? text.substring(0, 250) + '...' : text;
   }

@@ -1,9 +1,14 @@
 @media (max-width: 766px) {
-  .uk-description-list > dd:last-child {
-    margin-bottom: 20px;
-  }
+    .uk-description-list>dd:last-child {
+        margin-bottom: 20px;
+    }
 }
-/*
-.uk-card-media-top {
-  border-bottom: 4px solid rgba(255, 0, 0, 0.54)
-}*/
+
+.uk-grid-margin.uk-first-column {
+    margin-top: 30px;
+}
+
+.uk-grid-divider.uk-grid-stack>.uk-grid-margin::before {
+    top: -15px;
+    left: 60px;
+}

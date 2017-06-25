@@ -1,7 +1,7 @@
-import {Component, Input, OnDestroy} from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import {Event} from "../../../entities/event";
 
-declare let $: any;
+declare const $, UIkit: any;
 
 @Component({
   selector: 'app-event-modal',
@@ -15,6 +15,10 @@ export class EventModalComponent implements OnDestroy {
 
   ngOnDestroy() {
     $('#eventDetailModal').remove();
+    $('#subscriptionModal').remove();
   }
 
+  openSubscriptionModal() {
+    UIkit.modal('#subscriptionModal').show();
+  }
 }

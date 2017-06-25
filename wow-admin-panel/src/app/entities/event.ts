@@ -5,7 +5,7 @@ export class Event {
     public trainerId: string = '',
     public imagePath: string = '',
     public type: string = '',
-    public date: Date = new Date(),
+    public date: Date = null,
     public duration: string = '',
     public cost: string = '',
     public place: string = '',

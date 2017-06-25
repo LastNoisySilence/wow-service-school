@@ -1,7 +1,7 @@
 import {Component, Input, EventEmitter, Output} from '@angular/core';
 import {Event} from "../../../entities/event";
 
-declare let UIkit: any;
+declare const UIkit: any;
 
 @Component({
   selector: 'app-event-item',
@@ -18,6 +18,12 @@ export class EventItemComponent {
     this.currentEvent = event;
     this.onCurrentEventChange.emit(event);
     UIkit.modal('#eventDetailModal').show();
+  }
+
+  openSubscriptionModal(event: Event) {
+    this.currentEvent = event;
+    this.onCurrentEventChange.emit(event);
+    UIkit.modal('#subscriptionModal').show();
   }
 
 }

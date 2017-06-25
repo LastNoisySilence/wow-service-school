@@ -78,19 +78,12 @@ export class EventListComponent {
   renameCategory(category: EventsCategory) {
     this.isReadonlyTitle = true;
     this._data.editEventsCategory(category).subscribe(
-      () => {},
-      console.error
+      () => {}, console.error
     )
   }
 
   removeCategory(category: EventsCategory) {
     this._data.deleteEventsCategory(category).subscribe(
-      () => {
-        this._data.getEventsCategory().subscribe(
-          (eventsCategory: EventsCategory[]) => {
-            this.eventsCategoryList = eventsCategory;
-          }, error => console.error(error));
-      },
-      error => console.error(error))
+      () => this.loadData(), console.error)
   }
 }

@@ -1,6 +1,6 @@
 import { Consulting } from './../../../entities/consulting';
 import { Component, OnDestroy, Input } from '@angular/core';
-declare const $: any;
+declare const $, UIkit: any;
 
 @Component({
   selector: 'app-consulting-modal',
@@ -13,6 +13,11 @@ export class ConsultingModalComponent implements OnDestroy {
 
   ngOnDestroy() {
     $('#consultingDetailModal').remove();
+    $('#subscriptionModal').remove();
+  }
+
+  openSubscriptionModal() {
+    UIkit.modal('#subscriptionModal').show();
   }
 
 }

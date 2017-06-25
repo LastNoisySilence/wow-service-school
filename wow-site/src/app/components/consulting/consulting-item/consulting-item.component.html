@@ -28,8 +28,17 @@
     </div>
     <div class="uk-margin-small visible-xs"></div>
     <div class="uk-card-footer text-center">
-        <a class="uk-button uk-button-text" (click)="openConsultingtDetails(consulting)">
-      подробнее
-    </a>
+        <div class="uk-grid-divider uk-margin-small uk-flex-center" uk-grid>
+            <div>
+                <a class="uk-button uk-button-text" (click)="openConsultingtDetails(consulting)">
+                    подробнее
+                </a>
+            </div>
+            <div>
+                <a class="uk-button uk-button-text" (click)="openSubscriptionModal(consulting)">
+                  заказать
+                </a>
+            </div>
+        </div>
     </div>
 </div>
