@@ -16,18 +16,18 @@
             <div class="uk-card-body uk-padding-medium clearfix">
                 <div class="col-xs-12 col-sm-6">
                     <dl class="uk-description-list">
-                        <dt>Тип мероприятия</dt>
+                        <dt *ngIf="event?.type">Тип мероприятия</dt>
                         <dd>{{event?.type}} <br></dd>
-                        <dt>Стоимость</dt>
+                        <dt *ngIf="event?.cost">Стоимость</dt>
                         <dd>{{event?.cost}}</dd>
                     </dl>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <dl class="uk-description-list">
-                        <dt>Дата и время начала</dt>
-                        <dd>{{event?.date | date:'fullDate'}} в {{event?.date | date:"HH:mm"}}
+                        <dt *ngIf="event?.date">Дата и время начала</dt>
+                        <dd *ngIf="event?.date">{{event?.date | date:'fullDate'}} в {{event?.date | date:"HH:mm"}}
                         </dd>
-                        <dt>Место проведения</dt>
+                        <dt *ngIf="event?.place">Место проведения</dt>
                         <dd>{{event?.place}}</dd>
                     </dl>
                 </div>

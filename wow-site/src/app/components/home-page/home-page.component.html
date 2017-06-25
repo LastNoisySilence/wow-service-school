@@ -46,7 +46,7 @@
                 </h3>
                 <a id="target" hidden></a>
                 <div *ngFor="let eventItem of events">
-                    <app-event-item [event]="eventItem" [(eventInModal)]="currentEvent">
+                    <app-event-item [event]="eventItem" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
                     </app-event-item>
                 </div>
             </div>

@@ -32,6 +32,10 @@ export class HomePageComponent {
     return text.length > 250 ? text.substring(0, 250) + '...' : text;
   }
 
+  changeEventInModal(event: Event) {
+    this.currentEvent = event;
+  }
+
   openDetails(event: Event) {
     this.currentEvent = event;
     UIkit.modal('#eventDetailModal').show();

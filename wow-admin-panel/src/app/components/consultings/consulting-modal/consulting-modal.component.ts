@@ -4,7 +4,7 @@ import {DataService} from "../../../services/data.service";
 import {Consulting} from "../../../entities/consulting";
 import {EventService} from "../../../services/event.service";
 import {error} from "util";
-declare let UIkit, $: any;
+declare const UIkit, $: any;
 
 @Component({
   selector: 'app-consulting-modal',
@@ -38,6 +38,7 @@ export class ConsultingModalComponent implements OnDestroy, OnInit {
       (category) => {
         this.newCategory._id = category.json()._id;
         this._event.addConsultingCategory(this.newCategory);
+        this.newConsulting.categoryId = this.newCategory._id;
         this.newCategory = new ConsultingCategory();
         UIkit.modal('#newConsultingCategoryModal').hide();
       }, console.error
@@ -106,10 +107,10 @@ export class ConsultingModalComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     $('#AddModal').on('beforehide', () => {
-      if(!this.isCategoryAdd) {
-        this.isCategoryAdd = false;
+      if (!this.isCategoryAdd) {
         this.resetData();
       }
+      this.isCategoryAdd = false;
     });
     $('#newConsultingCategoryModal').on('beforehide', () => {
       UIkit.modal('#AddModal').show();
