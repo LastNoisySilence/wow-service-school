@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let verifyAuth = require('../shared/verifyAuth');
 let mongoose = require('mongoose');
 
 let db = mongoose.connection;
@@ -17,7 +18,7 @@ db.once('open', function () {
     });
   });
 
-  router.post('/eventsCategory', function (req, res, next) {
+  router.post('/eventsCategory', verifyAuth, function (req, res, next) {
     let obj = new EventsCategory(req.body);
     obj.save(function (err, obj) {
       if (err) return console.error(err);
@@ -25,19 +26,19 @@ db.once('open', function () {
     });
   });
 
-  router.put('/eventsCategory/:id', function (req, res) {
-    EventsCategory.findOneAndUpdate({_id: req.params.id}, req.body, function (err) {
+  router.put('/eventsCategory/:id', verifyAuth, function (req, res) {
+    EventsCategory.findOneAndUpdate({ _id: req.params.id }, req.body, function (err) {
       if (err) return console.error(err);
       res.sendStatus(200);
     })
   });
 
-  router.delete('/eventsCategory/:id', function (req, res) {
-    EventsCategory.findOneAndRemove({_id: req.params.id}, function (err, deletedObject) {
+  router.delete('/eventsCategory/:id', verifyAuth, function (req, res) {
+    EventsCategory.findOneAndRemove({ _id: req.params.id }, function (err, deletedObject) {
       if (err) return console.error(err);
-      EventsCategory.findOne({secondaryKey: 'other'}, (findError, findObject) => {
+      EventsCategory.findOne({ secondaryKey: 'other' }, (findError, findObject) => {
         if (findObject) {
-          Event.update({categoryId: req.params.id}, {$set: {categoryId: findObject._id}}, {multi: true}, (err) => {
+          Event.update({ categoryId: req.params.id }, { $set: { categoryId: findObject._id } }, { multi: true }, (err) => {
             if (err) return console.error(err);
           });
           findObject.listOfEventsIds =
@@ -54,6 +55,9 @@ db.once('open', function () {
           other.listOfEventsIds = deletedObject.listOfEventsIds;
           other.save((otherSavedError, otherSavedData) => {
             if (err) return console.error(otherSavedError);
+            Event.update({ categoryId: req.params.id }, { $set: { categoryId: otherSavedData._id } }, { multi: true }, (err) => {
+              if (err) return console.error(err);
+            });
           });
         }
       });

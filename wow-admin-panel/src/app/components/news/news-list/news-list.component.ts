@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {DataService} from "../../../services/data.service";
-import {EventService} from "../../../services/event.service";
-import {News} from "../../../entities/news";
+import { Component } from '@angular/core';
+import { DataService } from '../../../services/data.service';
+import { EventService } from '../../../services/event.service';
+import { News } from '../../../entities/news';
 
 @Component({
   selector: 'app-news-list',

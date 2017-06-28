@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {Event} from "../../../entities/event";
-import {DataService} from "../../../services/data.service";
-import {EventService} from "../../../services/event.service";
-import {EventsCategory} from "../../../entities/eventsCategory";
-import {Trainer} from "../../../entities/trainer";
+import { Component } from '@angular/core';
+import { Event } from '../../../entities/event';
+import { DataService } from '../../../services/data.service';
+import { EventService } from '../../../services/event.service';
+import { EventsCategory } from '../../../entities/eventsCategory';
+import { Trainer } from '../../../entities/trainer';
 import _ from 'lodash';
 
 @Component({
@@ -17,7 +17,7 @@ export class EventListComponent {
   eventsList: Event[] = [];
   trainersList: Trainer[] = [];
   eventsCategoryList: EventsCategory[] = [];
-  isReadonlyTitle: boolean = true;
+  isReadonlyTitle: Boolean = true;
 
   constructor(private _data: DataService, private _event: EventService) {
     this.loadData();
@@ -33,8 +33,9 @@ export class EventListComponent {
     _event.onEventAdd.subscribe((event: Event) => {
       this.eventsList.push(event);
       this.eventsCategoryList.map((category: EventsCategory) => {
-        if (category._id === event.categoryId)
+        if (category._id === event.categoryId) {
           category.listOfEventsIds.push(event._id);
+        }
       });
       this.loadData();
     });
@@ -78,12 +79,11 @@ export class EventListComponent {
   renameCategory(category: EventsCategory) {
     this.isReadonlyTitle = true;
     this._data.editEventsCategory(category).subscribe(
-      () => {}, console.error
-    )
+      () => { }, console.error
+    );
   }
 
   removeCategory(category: EventsCategory) {
-    this._data.deleteEventsCategory(category).subscribe(
-      () => this.loadData(), console.error)
+    this._data.deleteEventsCategory(category).subscribe(() => this.loadData(), console.error);
   }
 }

@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let verifyAuth = require('../shared/verifyAuth');
 let mongoose = require('mongoose');
 let db = mongoose.connection;
 mongoose.Promise = global.Promise;
@@ -16,7 +17,7 @@ db.once('open', function () {
     });
   });
 
-  router.post('/consultings', function (req, res, next) {
+  router.post('/consultings', verifyAuth, function (req, res, next) {
     let obj = new Consulting(req.body);
     obj.save(function (err, obj) {
       if (err) return console.error(err);
@@ -33,7 +34,7 @@ db.once('open', function () {
     });
   });
 
-  router.put('/consultings/:id', function (req, res) {
+  router.put('/consultings/:id', verifyAuth, function (req, res) {
     Consulting.findOne({_id: req.params.id}, function (err, consulting) {
       if (err) return console.error(err);
       Consulting.update({_id: req.params.id}, req.body, (consultingUpdateError) => {
@@ -59,7 +60,7 @@ db.once('open', function () {
     })
   });
 
-  router.delete('/consultings/:id', function (req, res) {
+  router.delete('/consultings/:id', verifyAuth, function (req, res) {
     ConsultingCategory.findOne({secondaryKey: 'other'}, (findError, findObject) => {
       if (findObject) {
         if (findObject.listOfConsultingIds.indexOf(req.params.id) > -1) {

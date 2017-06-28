@@ -1,9 +1,9 @@
 import {Component, OnInit, OnDestroy, Input} from '@angular/core';
-import {Event} from "../../../entities/event";
-import {DataService} from "../../../services/data.service";
-import {EventService} from "../../../services/event.service";
-import {EventsCategory} from "../../../entities/eventsCategory";
-import {Trainer} from "../../../entities/trainer";
+import {Event} from '../../../entities/event';
+import {DataService} from '../../../services/data.service';
+import {EventService} from '../../../services/event.service';
+import {EventsCategory} from '../../../entities/eventsCategory';
+import {Trainer} from '../../../entities/trainer';
 
 declare const UIkit, $: any;
 
@@ -25,7 +25,8 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
   eventTypes: string[] = [
     'Тренинг', 'Семинар',
     'Вебинар', 'Мастер-класс',
-    'Конференция', 'Лекция'
+    'Конференция', 'Лекция',
+    'Встреча'
   ];
 
   editForms: any[] = [
@@ -135,7 +136,7 @@ export class NewEventModalComponent implements OnDestroy, OnInit {
 
 
   uploadImage(image: any) {
-    let bar = $("#progressbar")[0];
+    let bar = $('#progressbar')[0];
 
     UIkit.upload('.image-upload', {
       url: '/upload',

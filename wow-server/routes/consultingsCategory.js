@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let verifyAuth = require('../shared/verifyAuth');
 let mongoose = require('mongoose');
 
 let db = mongoose.connection;
@@ -17,7 +18,7 @@ db.once('open', function () {
     });
   });
 
-  router.post('/consultingsCategory', function (req, res, next) {
+  router.post('/consultingsCategory', verifyAuth, function (req, res, next) {
     let obj = new ConsultingCategory(req.body);
     obj.save(function (err, obj) {
       if (err) return console.error(err);
@@ -25,14 +26,14 @@ db.once('open', function () {
     });
   });
 
-  router.put('/consultingsCategory/:id', function (req, res) {
+  router.put('/consultingsCategory/:id', verifyAuth, function (req, res) {
     ConsultingCategory.findOneAndUpdate({_id: req.params.id}, req.body, function (err) {
       if (err) return console.error(err);
       res.sendStatus(200);
     })
   });
 
-  router.delete('/consultingsCategory/:id', function (req, res) {
+  router.delete('/consultingsCategory/:id', verifyAuth, function (req, res) {
     ConsultingCategory.findOneAndRemove({_id: req.params.id}, function (err, deletedObject) {
       if (err) return console.error(err);
       ConsultingCategory.findOne({secondaryKey: 'other'}, (findError, findObject) => {
@@ -54,6 +55,9 @@ db.once('open', function () {
           other.listOfConsultingIds = deletedObject.listOfConsultingIds;
           other.save((otherSavedError, otherSavedData) => {
             if (err) return console.error(otherSavedError);
+            Consulting.update({ categoryId: req.params.id }, { $set: { categoryId: otherSavedData._id } }, { multi: true }, (err) => {
+              if (err) return console.error(err);
+            });
           });
         }
       });

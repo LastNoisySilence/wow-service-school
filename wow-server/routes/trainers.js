@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let verifyAuth = require('../shared/verifyAuth');
 let mongoose = require('mongoose');
 let fs = require('fs');
 
@@ -17,7 +18,7 @@ db.once('open', function () {
     });
   });
 
-  router.post('/trainers', function (req, res, next) {
+  router.post('/trainers', verifyAuth, function (req, res, next) {
     let obj = new Trainer(req.body);
     console.log('obj', obj);
     obj.save(function (err, obj) {
@@ -26,14 +27,14 @@ db.once('open', function () {
     });
   });
 
-  router.put('/trainers/:id', function (req, res) {
+  router.put('/trainers/:id', verifyAuth, function (req, res) {
     Trainer.findOneAndUpdate({_id: req.params.id}, req.body, function (err) {
       if (err) return console.error(err);
       res.sendStatus(200);
     })
   });
 
-  router.delete('/trainers/:id', function (req, res) {
+  router.delete('/trainers/:id', verifyAuth, function (req, res) {
 
     Trainer.findOne({_id: req.params.id}, function (err, obj) {
       try {

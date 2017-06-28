@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let verifyAuth = require('../shared/verifyAuth');
 let mongoose = require('mongoose');
 
 let db = mongoose.connection;
@@ -16,7 +17,7 @@ db.once('open', function () {
     });
   });
 
-  router.post('/news', function (req, res, next) {
+  router.post('/news', verifyAuth, function (req, res, next) {
     let obj = new News(req.body);
     obj.save(function (err, obj) {
       if (err) return console.error(err);

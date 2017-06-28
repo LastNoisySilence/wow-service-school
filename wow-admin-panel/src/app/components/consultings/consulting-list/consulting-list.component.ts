@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {ConsultingCategory} from "../../../entities/consultingCategory";
-import {Consulting} from "../../../entities/consulting";
-import {DataService} from "../../../services/data.service";
-import {EventService} from "../../../services/event.service";
+import { Component } from '@angular/core';
+import { ConsultingCategory } from '../../../entities/consultingCategory';
+import { Consulting } from '../../../entities/consulting';
+import { DataService } from '../../../services/data.service';
+import { EventService } from '../../../services/event.service';
 import _ from 'lodash';
 
 
@@ -15,12 +15,12 @@ export class ConsultingListComponent {
 
   consultingList: Consulting[] = [];
   categoryList: ConsultingCategory[] = [];
-  isReadonlyTitle: boolean = true;
+  isReadonlyTitle: Boolean = true;
 
   constructor(private _data: DataService, private _event: EventService) {
     this.loadData();
     _event.onConsultingCategoryAdd.subscribe((category: ConsultingCategory) => {
-      if(this.categoryList.length === 0) {
+      if (this.categoryList.length === 0) {
         this.loadData();
       }
       this.categoryList.push(category);
@@ -31,10 +31,11 @@ export class ConsultingListComponent {
     _event.onConsultingAdd.subscribe((consulting: Consulting) => {
       this.consultingList.push(consulting);
       this.categoryList.map((category: ConsultingCategory) => {
-        if (category._id === consulting.categoryId)
+        if (category._id === consulting.categoryId) {
           category.listOfConsultingIds.push(consulting._id);
+        }
       });
-      if(this.consultingList.length === 0) {
+      if (this.consultingList.length === 0) {
         this.loadData();
       }
     });
@@ -78,13 +79,11 @@ export class ConsultingListComponent {
   renameCategory(category: ConsultingCategory) {
     this.isReadonlyTitle = true;
     this._data.editConsultingCategory(category).subscribe(
-      () => {}, console.error
-    )
+      () => { }, console.error
+    );
   }
 
   removeCategory(category: ConsultingCategory) {
-    this._data.deleteConsultingCategory(category).subscribe(
-      () => this.loadData(), console.error
-    );
+    this._data.deleteConsultingCategory(category).subscribe(() => this.loadData(), console.error);
   }
 }

@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions} from "@angular/http";
-import {Observable} from "rxjs";
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
-  private headers = new Headers({'Content-Type': 'application/json', 'charset': 'UTF-8'});
-  private options = new RequestOptions({headers: this.headers});
+  private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
+  private options = new RequestOptions({ headers: this.headers });
 
   constructor(private _http: Http) { }
+
+  isLoggedIn(): Observable<Boolean> {
+    return this._http.get('/login').map(() => true);
+  }
+  login(user): Observable<any> {
+    return this._http.post('/login', JSON.stringify(user), this.options);
+  }
+  logout(): Observable<any> {
+    return this._http.get('/logout').map(() => true);
+  }
 
   getEvents(): Observable<any> {
     return this._http.get('/events').map(res => res.json());

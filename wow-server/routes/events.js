@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let verifyAuth = require('../shared/verifyAuth');
 let mongoose = require('mongoose');
 let fs = require('fs');
 
@@ -18,7 +19,7 @@ db.once('open', function () {
     });
   });
 
-  router.post('/events', function (req, res, next) {
+  router.post('/events', verifyAuth, function (req, res, next) {
     let obj = new Event(req.body);
     obj.save(function (err, obj) {
       if (err) return console.error(err);
@@ -35,7 +36,7 @@ db.once('open', function () {
     });
   });
 
-  router.put('/events/:id', function (req, res) {
+  router.put('/events/:id', verifyAuth, function (req, res) {
     Event.findOne({_id: req.params.id}, function (err, event) {
       if (err) return console.error(err);
       Event.update({_id: req.params.id}, req.body, (eventUpdateError) => {
@@ -61,7 +62,7 @@ db.once('open', function () {
     })
   });
 
-  router.delete('/events/:id', function (req, res) {
+  router.delete('/events/:id', verifyAuth, function (req, res) {
     Event.findOne({_id: req.params.id}, function (err, obj) {
       try {
         fs.unlinkSync(__dirname + '/../static' + obj.imagePath);

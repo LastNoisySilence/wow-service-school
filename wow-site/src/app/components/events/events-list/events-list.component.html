@@ -1,31 +1,31 @@
 <div class="container">
-    <div class="row" *ngIf="getFullCategories()?.length > 0">
-        <div class="col-xs-12">
-            <ul uk-accordion uk-scrollspy="cls: uk-animation-slide-top-medium; delay: 100; repeat: true">
-                <li *ngFor="let category of getFullCategories()">
-                    <h3 class="uk-accordion-title uk-heading-divider">
-                        {{category?.title}}
-                    </h3>
-                    <div class="uk-accordion-content">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6">
-                                <div *ngFor="let event of getEventByCategory(category); let even = even">
-                                    <app-event-item [event]="event" *ngIf="even" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
-                                    </app-event-item>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-6">
-                                <div *ngFor="let event of getEventByCategory(category); let odd = odd">
-                                    <app-event-item [event]="event" *ngIf="odd" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
-                                    </app-event-item>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+  <div class="row" *ngIf="getFullCategories()?.length > 0">
+    <div class="col-xs-12">
+      <ul uk-accordion uk-scrollspy="cls: uk-animation-slide-top-medium; delay: 100; repeat: true">
+        <li *ngFor="let category of getFullCategories()">
+          <h3 class="uk-accordion-title uk-heading-divider">
+            {{category?.title}}
+          </h3>
+          <div class="uk-accordion-content">
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <div *ngFor="let event of getEventByCategory(category); let even = even">
+                  <app-event-item [event]="event" *ngIf="even" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
+                  </app-event-item>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <div *ngFor="let event of getEventByCategory(category); let odd = odd">
+                  <app-event-item [event]="event" *ngIf="odd" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
+                  </app-event-item>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
 </div>
 <app-event-modal [event]="eventInModal"></app-event-modal>
 <app-subscription-modal [entity]="eventInModal" [type]="'Мероприятие'"></app-subscription-modal>
