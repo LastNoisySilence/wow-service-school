@@ -28,6 +28,12 @@ export class HomePageComponent {
     );
   }
 
+  isHasDate() {
+    return !!this.events.filter(event => {
+      return event.date !== null && event.date !== undefined;
+    })[0];
+  }
+
   first250Chars(text: string) {
     return text.length > 250 ? text.substring(0, 250) + '...' : text;
   }

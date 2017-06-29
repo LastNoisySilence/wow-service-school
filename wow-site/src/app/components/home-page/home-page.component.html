@@ -36,7 +36,7 @@
     <div class="uk-margin-medium-top hidden-xs"></div>
     <div class="uk-margin-small-top visible-xs"></div>
     <div class="row">
-        <div class="col-xs-12 col-md-6" *ngIf="events?.length > 0">
+        <div class="col-xs-12 col-md-6" *ngIf="events?.length > 0 && isHasDate()">
             <div>
                 <h3 class="uk-heading-line hidden-xs">
                     <span>Мероприятия</span>
@@ -46,7 +46,7 @@
                 </h3>
                 <a id="target" hidden></a>
                 <div *ngFor="let eventItem of events">
-                    <app-event-item [event]="eventItem" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
+                    <app-event-item [event]="eventItem" *ngIf="eventItem?.date" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
                     </app-event-item>
                 </div>
             </div>

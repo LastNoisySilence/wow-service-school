@@ -4,7 +4,7 @@
       *ngIf="getFullOfConsultingCategory()?.length > 0">
     <li *ngFor="let category of getFullOfConsultingCategory()">
       <h3 class="uk-accordion-title uk-heading-divider">
-        <input class="uk-input uk-form-small uk-form-blank uk-form-width-medium"
+        <input class="uk-input uk-form-small uk-form-blank uk-width-2-3"
                type="text" [(ngModel)]="category.title"
                [readonly]=isReadonlyTitle placeholder="Название категории...">
         <span
