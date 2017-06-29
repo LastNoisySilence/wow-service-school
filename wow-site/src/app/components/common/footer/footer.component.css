@@ -4,8 +4,24 @@
     }
 }
 
+.uk-contacts {
+    margin-top: 6px;
+}
+
 footer {
-    min-height: 60px;
+    min-height: 120px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+    footer {
+        min-height: 146px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    footer {
+        min-height: 90px;
+    }
 }
 
 footer .uk-icon {

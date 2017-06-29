@@ -1,34 +1,34 @@
 <div id="subscriptionModal" uk-modal="center: true">
-    <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-padding-small uk-width-1-2@l">
-        <button class="uk-modal-close-full visible-xs" type="button" uk-close></button>
-        <button class="uk-modal-close-outside hidden-xs" type="button" uk-close></button>
-        <form name="Subscription" #Subscription="ngForm" (ngSubmit)="onSubmit()" class="uk-grid-small" uk-grid>
-            <div class="uk-width-1-1">
-                <input name="Name" #name [(ngModel)]="userInfo.name" required [ngClass]="{
+  <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-padding-small uk-width-1-2@l">
+    <button class="uk-modal-close-full visible-xs" type="button" uk-close></button>
+    <button class="uk-modal-close-outside hidden-xs" type="button" uk-close></button>
+    <form name="Subscription" #Subscription="ngForm" (ngSubmit)="onSubmit()" class="uk-grid-small" uk-grid>
+      <div class="uk-width-1-1">
+        <input name="Name" #name [(ngModel)]="userInfo.name" required [ngClass]="{
             'uk-form-danger': (!Subscription?.form?.controls?.Name?.valid) && Subscription?.form?.controls?.Name?.touched,
             'uk-form-success': Subscription?.form?.controls?.Name?.valid
             }" class="uk-input" type="text" placeholder="Имя">
-            </div>
-            <div class="uk-width-1-2@s">
-                <input name="Email" [(ngModel)]="userInfo.email" required [ngClass]="{
+      </div>
+      <div class="uk-width-1-2@s">
+        <input name="Email" [(ngModel)]="userInfo.email" required [ngClass]="{
             'uk-form-danger': (!Subscription?.form?.controls?.Email?.valid) && Subscription?.form?.controls?.Email?.touched,
             'uk-form-success': Subscription?.form?.controls?.Email?.valid
             }" class="uk-input" type="text" placeholder="E-Mail">
-            </div>
-            <div class="uk-width-1-2@s">
-                <input name="Phone" [(ngModel)]="userInfo.phone" required [ngClass]="{
+      </div>
+      <div class="uk-width-1-2@s">
+        <input name="Phone" [(ngModel)]="userInfo.phone" required [ngClass]="{
             'uk-form-danger': (!Subscription?.form?.controls?.Phone?.valid) && Subscription?.form?.controls?.Phone?.touched,
             'uk-form-success': Subscription?.form?.controls?.Phone?.valid
             }" class="uk-input" type="text" placeholder="Номер телефона">
-            </div>
-            <div class="uk-width-1-1">
-                <hr>
-            </div>
-            <div class="uk-width-1-1">
-                <button type="submit" [disabled]="!Subscription?.form?.valid" class="uk-button uk-width-1-1 uk-button-secondary">
+      </div>
+      <div class="uk-width-1-1">
+        <hr>
+      </div>
+      <div class="uk-width-1-1">
+        <button type="submit" [disabled]="!Subscription?.form?.valid" class="uk-button uk-width-1-1 uk-button-secondary">
             Оформить заявку
           </button>
-            </div>
-        </form>
-    </div>
+      </div>
+    </form>
+  </div>
 </div>
