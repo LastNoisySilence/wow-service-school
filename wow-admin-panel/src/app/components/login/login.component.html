@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 uk-margin-xlarge-top uk-animation-slide-top-medium">
+      <form 
+        class="uk-width-1-1 uk-width-1-2@m uk-margin-auto" novalidate
+        (ngSubmit)="login()"
+        #loginForm="ngForm">
+        <h1 class="uk-heading-divider">Вход</h1>
+        <div class="uk-margin">
+          <div class="uk-inline uk-width-1-1" [ngClass]="{'uk-animation-shake': isIncorrectUserData}">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input 
+            class="uk-input" 
+            name="username" 
+            type="text"
+            placeholder="логин" 
+            [(ngModel)]="user.username"
+            required
+            [ngClass]="{
+            'uk-form-danger': ((!loginForm?.form?.controls?.username?.valid) && loginForm?.form?.controls?.username?.touched) || isIncorrectUserData,
+            'uk-form-success': loginForm?.form?.controls?.username?.valid && !isIncorrectUserData
+            }">
+          </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-inline uk-width-1-1" [ngClass]="{'uk-animation-shake': isIncorrectUserData}">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input 
+            class="uk-input" 
+            name="password" 
+            type="password" 
+            placeholder="пароль" 
+            [(ngModel)]="user.password"
+            required
+            [ngClass]="{
+            'uk-form-danger': ((!loginForm?.form?.controls?.password?.valid) && loginForm?.form?.controls?.password?.touched) || isIncorrectUserData,
+            'uk-form-success': loginForm?.form?.controls?.password?.valid && !isIncorrectUserData
+            }">
+          </div>
+        </div>
+        <p uk-margin>
+          <button class="uk-button uk-button-secondary uk-width-1-1" type="submit" [disabled]="!loginForm?.form?.valid">
+            Войти
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
