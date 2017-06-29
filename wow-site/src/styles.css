@@ -37,6 +37,11 @@ em {
     border-radius: 7px;
 }
 
+.uk-modal-dialog {
+    margin: 0 !important;
+}
+
+
 html,
 body {
     height: 100%;

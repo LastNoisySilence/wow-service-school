@@ -21,7 +21,8 @@
         <div class="col-sm-6 col-xs-12">
             <dl class="uk-description-list uk-margin-remove-bottom">
                 <dt *ngIf="event?.date">Дата и время начала</dt>
-                <dd *ngIf="event?.date">{{event?.date | date:'fullDate'}} в {{event?.date | date:"HH:mm"}}
+                <dd *ngIf="event?.date && isIE()">{{event?.date | date:'fullDate'}}</dd>
+                <dd *ngIf="event?.date && !isIE()">{{event?.date | date:'fullDate'}} в {{event?.date | date:"HH:mm"}}
                 </dd>
                 <dt *ngIf="event?.place">Место проведения</dt>
                 <dd>{{event?.place}}</dd>
