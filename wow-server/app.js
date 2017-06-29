@@ -23,7 +23,7 @@ let trainers = require('./routes/trainers'),
 
 let app = express();
 app.use(compression());
-mongoose.connect('mongodb://localhost:27017/wow-service-school-v13');
+mongoose.connect('mongodb://localhost:27017/wow-service-school-prod');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 

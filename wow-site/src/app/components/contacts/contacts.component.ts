@@ -2,8 +2,9 @@ import {
   Component, OnDestroy, ElementRef,
   ViewChild, AfterViewInit
 } from '@angular/core';
-import {DataService} from "../../services/data.service";
-import {ActivatedRoute} from "@angular/router";
+import { DataService } from "../../services/data.service";
+import { ActivatedRoute } from "@angular/router";
+declare const UIkit: any;
 
 @Component({
   selector: 'app-contacts',
@@ -47,7 +48,12 @@ export class ContactsComponent implements AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
-    this._data.postUserData(this.userInfo).subscribe(() => this.isSent = true, console.error);
+    this._data.postUserData(this.userInfo).subscribe(() => {
+      this.isSent = true;
+      UIkit.notification(this.userInfo.type === 'Подписка'
+      ? 'Спасибо! Теперь вы подписаны на рассылку'
+      : 'Спасибо! Мы ответим вам в ближайшее время', { status: 'success' });
+    }, console.error);
   }
 
 }

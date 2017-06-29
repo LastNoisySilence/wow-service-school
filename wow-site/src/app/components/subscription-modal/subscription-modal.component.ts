@@ -39,6 +39,7 @@ export class SubscriptionModalComponent implements OnDestroy, OnInit {
       this.userInfo.title = this.entity.title;
     this._data.postUserData(this.userInfo).subscribe(() => {
       UIkit.modal('#subscriptionModal').hide();
+      UIkit.notification('Ваш запрос принят. Мы ответим вам в ближайшее время', { status: 'success' });
     }, console.error);
   }
 

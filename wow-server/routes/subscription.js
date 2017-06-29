@@ -1,6 +1,5 @@
 let express = require('express');
 let router = express.Router();
-let verifyAuth = require('../shared/verifyAuth');
 let path = require('path');
 let sendpulse = require('sendpulse-api');
 const TOKEN_STORAGE = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDSnEVkbgnaiA2aCpYnkS+k5GFxo4JRMy1X7xHodicwy1Oc19s99QoEJ0HcxWhNucC521TQn5KXDefsVm9F3wnzAFMFiEaFndCq9yxhYVUpO2cOBtt0G+Koru6cJFtpGjEK5JzkErpr9GjzpI7C33RWza0DPHqubDyYY+i8M8YnHwIDAQAB";
@@ -11,7 +10,7 @@ sendpulse.init(
 );
 
 
-router.post('/subscription', verifyAuth, function (req, res, next) {
+router.post('/subscription', function (req, res, next) {
   let userInfo = req.body;
   sendpulse.smtpSendMail((data) => {
     console.log(data);
@@ -29,9 +28,20 @@ router.post('/subscription', verifyAuth, function (req, res, next) {
         "name": "WOW Service School",
         "email": "inerono@gmail.com"
       },
-      "to": [{
-        "email": "inerono@hotmail.com"
-      }]
+      "to": [
+        {
+          "email": "inerono@hotmail.com"
+        },
+        {
+          "email": "inerono@outlook.com"
+        },
+        {
+          "email": "inerono@gmail.com"
+        },
+        {
+          "email": "catalina777@ukr.net"
+        }
+      ]
     });
   res.send(req.body);
 });
