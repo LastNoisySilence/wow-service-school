@@ -24,9 +24,9 @@
         "../node_modules/uikit/dist/css/uikit.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/uikit/dist/js/uikit.js",
-        "../node_modules/uikit/dist/js/uikit-icons.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/uikit/dist/js/uikit.min.js",
+        "../node_modules/uikit/dist/js/uikit-icons.min.js"
       ],
       "addons": [],
       "environmentSource": "environments/environment.ts",

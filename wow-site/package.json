@@ -5,7 +5,8 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod --aot"
+    "build": "ng build --prod --aot",
+    "build-map": "ng build --prod --aot --sourcemap"
   },
   "dependencies": {
     "@angular/animations": "^4.1.3",
