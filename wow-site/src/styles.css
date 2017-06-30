@@ -37,6 +37,20 @@ em {
     border-radius: 7px;
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     .uk-modal-dialog {
+             display: inline-block;
+             text-align: center;
+             margin: 50px 0 !important;
+     }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .uk-modal-dialog > .uk-card.uk-card-default {
+         text-align: left;
+     }
+}
+
 html,
 body {
     height: 100%;
