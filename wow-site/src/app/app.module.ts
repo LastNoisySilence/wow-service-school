@@ -1,20 +1,21 @@
+import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service';
 import { WindowRef } from './services/window.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
-import { DataService } from "./services/data.service";
-import { HomePageComponent } from "./components/home-page/home-page.component";
-import { HeaderComponent } from "./components/common/header/header.component";
-import { FooterComponent } from "./components/common/footer/footer.component";
-import { routes } from "./app.router";
+import { DataService } from './services/data.service';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { routes } from './app.router';
 import {
   SafeHtmlPipe,
   NewsModalComponent
-} from "./components/news/news-modal/news-modal.component";
-import { EventModalComponent } from "./components/events/event-modal/event-modal.component";
+} from './components/news/news-modal/news-modal.component';
+import { EventModalComponent } from './components/events/event-modal/event-modal.component';
 import {
   NewsListComponent
 } from './components/news/news-list/news-list.component';
@@ -64,12 +65,13 @@ import { SubscriptionModalComponent } from './components/subscription-modal/subs
   ],
   providers: [
     DataService,
+    GoogleAnalyticsEventsService,
     WindowRef,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    { provide: LOCALE_ID, useValue: "ru-RU" }
+    { provide: LOCALE_ID, useValue: 'ru-RU' }
   ],
   bootstrap: [AppComponent]
 })

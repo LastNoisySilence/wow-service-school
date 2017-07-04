@@ -45,7 +45,7 @@
                     <span>Мероприятия</span>
                 </h3>
                 <a id="target" hidden></a>
-                <div *ngFor="let eventItem of events">
+                <div *ngFor="let eventItem of getSortedEvents()">
                     <app-event-item [event]="eventItem" *ngIf="eventItem?.date" [(eventInModal)]="currentEvent" (onCurrentEventChange)="changeEventInModal($event)">
                     </app-event-item>
                 </div>

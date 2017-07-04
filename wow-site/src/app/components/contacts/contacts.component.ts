@@ -1,9 +1,10 @@
+import { GoogleAnalyticsEventsService } from './../../services/google-analytics-events.service';
 import {
   Component, OnDestroy, ElementRef,
   ViewChild, AfterViewInit
 } from '@angular/core';
-import { DataService } from "../../services/data.service";
-import { ActivatedRoute } from "@angular/router";
+import { DataService } from '../../services/data.service';
+import { ActivatedRoute } from '@angular/router';
 declare const UIkit: any;
 
 @Component({
@@ -24,11 +25,10 @@ export class ContactsComponent implements AfterViewInit, OnDestroy {
 
   private sub: any;
   @ViewChild('name') nameInput: ElementRef;
-  isHideMessageInput: boolean = false;
-  subscribeTitle: string = 'Напишите нам';
-  isSent: boolean = false;
-  constructor(private _data: DataService, private route: ActivatedRoute) {
-  }
+  isHideMessageInput: Boolean = false;
+  subscribeTitle: String = 'Напишите нам';
+  isSent: Boolean = false;
+  constructor(private _data: DataService, private route: ActivatedRoute, private _ga: GoogleAnalyticsEventsService) {}
 
 
   ngAfterViewInit() {
@@ -48,6 +48,7 @@ export class ContactsComponent implements AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
+    this._ga.emitEvent(this.userInfo.type, 'Отправлена форма', 'Модальное окно мероприятия', 10);
     this._data.postUserData(this.userInfo).subscribe(() => {
       this.isSent = true;
       UIkit.notification(this.userInfo.type === 'Подписка'

@@ -1,3 +1,4 @@
+import { GoogleAnalyticsEventsService } from './../../../services/google-analytics-events.service';
 import { Consulting } from './../../../entities/consulting';
 import { DataService } from './../../../services/data.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
@@ -15,7 +16,10 @@ export class ConsultingItemComponent {
   @Input() currentConsulting: Consulting;
   @Output() onCurrentConsultingChange: EventEmitter<Consulting> = new EventEmitter();
 
+  constructor(private _ga: GoogleAnalyticsEventsService) {}
+
   openConsultingtDetails(consulting: Consulting) {
+    this._ga.emitEvent('Консалтинг', 'Открыто: ' + consulting.title, 'Модальное окно консалтинга', 10);
     this.currentConsulting = consulting;
     this.onCurrentConsultingChange.emit(consulting);
     UIkit.modal('#consultingDetailModal').show();

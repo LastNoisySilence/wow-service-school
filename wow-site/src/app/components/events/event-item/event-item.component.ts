@@ -1,3 +1,4 @@
+import { GoogleAnalyticsEventsService } from './../../../services/google-analytics-events.service';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Event } from "../../../entities/event";
 import { WindowRef } from "app/services/window.service";
@@ -15,9 +16,10 @@ export class EventItemComponent {
   @Input() currentEvent: Event;
   @Output() onCurrentEventChange: EventEmitter<Event> = new EventEmitter();
 
-  constructor(private _window: WindowRef) { }
+  constructor(private _window: WindowRef, private _ga: GoogleAnalyticsEventsService) { }
 
   openEventDetails(event: Event) {
+    this._ga.emitEvent('Мероприятие', 'Открыто: ' + event.title, 'Модальное окно мероприятия', 10);
     this.currentEvent = event;
     this.onCurrentEventChange.emit(event);
     UIkit.modal('#eventDetailModal').show();

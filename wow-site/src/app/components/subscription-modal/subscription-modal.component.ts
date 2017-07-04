@@ -1,3 +1,4 @@
+import { GoogleAnalyticsEventsService } from './../../services/google-analytics-events.service';
 import { Location } from '@angular/common';
 import { WindowRef } from './../../services/window.service';
 import { Router } from '@angular/router';
@@ -27,12 +28,18 @@ export class SubscriptionModalComponent implements OnDestroy, OnInit {
 
   userInfo: any = {};
 
-  constructor(private _data: DataService, private _window: WindowRef) {
+  constructor(private _data: DataService, private _window: WindowRef, private _ga: GoogleAnalyticsEventsService) {
     this.baseUrl = _window.nativeWindow.location.origin;
     this.initUserInfo();
   }
 
   onSubmit() {
+    this._ga.emitEvent(
+      this.type,
+      (this.type === 'Мероприятие' ? 'Приняли участие в: ' : 'Заказали: ') + this.entity.title,
+      'Модальное окно услуги',
+      10
+    );
     this.userInfo.path = `${this.baseUrl}/#/${this.type === 'Консалтинг'
       ? 'consulting-page'
       : 'events-page'}/${this.entity._id}`;

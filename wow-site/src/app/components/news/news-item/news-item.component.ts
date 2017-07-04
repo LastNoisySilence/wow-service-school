@@ -1,6 +1,7 @@
+import { GoogleAnalyticsEventsService } from './../../../services/google-analytics-events.service';
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {News} from "../../../entities/news";
-declare let UIkit: any;
+import {News} from '../../../entities/news';
+declare const UIkit: any;
 
 @Component({
   selector: 'app-news-item',
@@ -8,6 +9,8 @@ declare let UIkit: any;
   styleUrls: ['./news-item.component.css']
 })
 export class NewsItemComponent {
+
+  constructor(private _ga: GoogleAnalyticsEventsService) {}
 
   @Input() newsItem: News;
   @Input() currentNews: News;
@@ -18,6 +21,7 @@ export class NewsItemComponent {
   }
 
   openNewsDetails(news: News) {
+    this._ga.emitEvent('Новости', 'Открыто: ' + news.title, 'Модальное окно новости', 10);
     this.currentNews = news;
     this.onCurrentNewsChange.emit(news);
     UIkit.modal('#newsDetailModal').show();

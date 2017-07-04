@@ -1,3 +1,4 @@
+import { GoogleAnalyticsEventsService } from './../../../services/google-analytics-events.service';
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Trainer} from "../../../entities/trainer";
 import {Event} from "../../../entities/event";
@@ -16,7 +17,10 @@ export class TrainerItemComponent {
   @Input() currentTrainer: Trainer;
   @Output() onCurrentTrainerChange: EventEmitter<Trainer> = new EventEmitter();
 
+  constructor(private _ga: GoogleAnalyticsEventsService) {}
+
   openTrainerDetails(trainer: Trainer) {
+    this._ga.emitEvent('Тренер', 'Открыто: ' + trainer.fullName, 'Модальное окно тренера', 10);
     this.currentTrainer = trainer;
     this.currentTrainer.events = this.getEventByTrainer();
     this.onCurrentTrainerChange.emit(this.currentTrainer);

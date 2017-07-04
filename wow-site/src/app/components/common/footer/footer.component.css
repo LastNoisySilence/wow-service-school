@@ -9,12 +9,12 @@
 }
 
 footer {
-    min-height: 120px;
+    min-height: 140px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 960px) {
     footer {
-        min-height: 146px;
+        min-height: 156px;
     }
 }
 

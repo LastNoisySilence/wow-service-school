@@ -1,6 +1,7 @@
-import {Component, OnDestroy, Input, OnInit} from '@angular/core';
-import {Trainer} from "../../../entities/trainer";
-import {Event} from "../../../entities/event";
+import { GoogleAnalyticsEventsService } from './../../../services/google-analytics-events.service';
+import {Component, OnDestroy, Input} from '@angular/core';
+import {Trainer} from '../../../entities/trainer';
+import {Event} from '../../../entities/event';
 import _ from 'lodash';
 declare const $, UIkit: any;
 
@@ -9,16 +10,12 @@ declare const $, UIkit: any;
   templateUrl: './trainer-modal.component.html',
   styleUrls: ['./trainer-modal.component.css']
 })
-export class TrainerModalComponent implements OnDestroy, OnInit {
-  ngOnInit(): void {
-    /*$('#eventDetailModal').on('hidden', () => {
-      UIkit.modal('#trainerDetailModal').show();
-    });*/
-  }
-
+export class TrainerModalComponent implements OnDestroy {
   getTrainerEventsInChunks() {
     return _.chunk(this.trainer.events, 3);
   };
+
+  constructor(private _ga: GoogleAnalyticsEventsService) {}
 
   // tslint:disable-next-line:member-ordering
   @Input() trainer: Trainer;
@@ -29,7 +26,8 @@ export class TrainerModalComponent implements OnDestroy, OnInit {
     $('#subscriptionModal').remove();
   }
 
-  openEventDetails(event){
+  openEventDetails(event) {
+    this._ga.emitEvent('Мероприятие', 'Открыто: ' + event.title, 'Модальное окно мероприятия', 10);
     this.currentEvent = event;
     UIkit.modal('#eventDetailModal').show();
   }

@@ -1,7 +1,7 @@
 import {Component, Input, PipeTransform, Pipe, OnDestroy} from '@angular/core';
 import {News} from "../../../entities/news";
 import {DomSanitizer} from '@angular/platform-browser'
-declare let $: any;
+declare const $: any;
 
 @Component({
   selector: 'app-news-modal',

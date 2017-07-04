@@ -28,8 +28,7 @@
     "intl": "^1.2.5",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
-    "rxjs": "^5.1.0",
-    "typescript": "^2.3.4",
+    "rxjs": "5.4.1",
     "uikit": "^3.0.0-beta.18",
     "web-animations-js": "^2.2.5",
     "zone.js": "^0.7.6"
@@ -41,6 +40,6 @@
     "codelyzer": "~2.0.0-beta.4",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.0.0"
+    "typescript": "^2.3.2"
   }
 }
